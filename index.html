@@ -1,0 +1,3143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Mon Atelier de Français 🇫🇷 — Guía y Práctica Interactiva</title>
+  <style>
+    :root {
+      --fr-blue: #1d4ed8;
+      --fr-blue-dark: #1e3a8a;
+      --fr-blue-light: #dbeafe;
+      --fr-red: #ef4444;
+      --fr-red-light: #fee2e2;
+      --accent-purple: #7c3aed;
+      --accent-purple-light: #ede9fe;
+      --accent-amber: #f59e0b;
+      --accent-amber-light: #fef3c7;
+      --accent-green: #10b981;
+      --accent-green-light: #d1fae5;
+      --bg-main: #f8fafc;
+      --bg-card: #ffffff;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --border-color: #e2e8f0;
+      --radius-lg: 20px;
+      --radius-md: 14px;
+      --radius-sm: 10px;
+      --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.06);
+      --shadow-md: 0 8px 24px rgba(15, 23, 42, 0.09);
+      --shadow-lg: 0 14px 34px rgba(29, 78, 216, 0.14);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+      background: linear-gradient(135deg, #eff6ff 0%, #f8fafc 50%, #fef2f2 100%);
+      color: var(--text-main);
+      min-height: 100vh;
+      line-height: 1.5;
+      padding-bottom: 50px;
+    }
+
+    /* Barra tricolor superior */
+    .tricolor-bar {
+      height: 7px;
+      background: linear-gradient(90deg, #1d4ed8 0%, #1d4ed8 33.3%, #ffffff 33.3%, #ffffff 66.6%, #ef4444 66.6%, #ef4444 100%);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    }
+
+    .app-container {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    /* Header */
+    .app-header {
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      padding: 18px 22px;
+      box-shadow: var(--shadow-md);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 18px;
+      border: 1px solid var(--border-color);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-logo {
+      width: 54px;
+      height: 54px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #1d4ed8, #3b82f6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      color: #fff;
+      box-shadow: 0 6px 14px rgba(29, 78, 216, 0.28);
+      flex-shrink: 0;
+    }
+
+    .brand-text h1 {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--fr-blue-dark);
+      letter-spacing: -0.02em;
+    }
+
+    .brand-text p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    .stats-pills {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .stat-pill {
+      background: #f1f5f9;
+      border: 1px solid var(--border-color);
+      padding: 7px 13px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-main);
+    }
+
+    /* Navegación principal */
+    .main-nav {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 20px;
+      background: #e2e8f0;
+      padding: 6px;
+      border-radius: 16px;
+    }
+
+    .nav-tab {
+      border: none;
+      background: transparent;
+      padding: 12px 10px;
+      border-radius: 12px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      text-align: center;
+    }
+
+    .nav-tab:hover {
+      color: var(--text-main);
+    }
+
+    .nav-tab.active {
+      background: var(--bg-card);
+      color: var(--fr-blue);
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* Vistas */
+    .view-section {
+      display: none;
+      animation: fadeIn 0.25s ease;
+    }
+
+    .view-section.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Tarjetas generales */
+    .card {
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border-color);
+      margin-bottom: 18px;
+    }
+
+    .card-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--fr-blue-dark);
+    }
+
+    .card-subtitle {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    /* Sesiones Banner */
+    .session-filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .session-btn {
+      flex: 1;
+      min-width: 190px;
+      padding: 12px 16px;
+      border-radius: var(--radius-md);
+      border: 2px solid var(--border-color);
+      background: #fff;
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.2s;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .session-btn:hover {
+      border-color: #93c5fd;
+      background: #f8fafc;
+    }
+
+    .session-btn.active {
+      border-color: var(--fr-blue);
+      background: var(--fr-blue-light);
+    }
+
+    .session-btn .s-tag {
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--fr-blue);
+    }
+
+    .session-btn .s-name {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: var(--text-main);
+    }
+
+    .session-btn .s-desc {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* Grid de Temas */
+    .topics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .topic-card {
+      border: 2px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 14px;
+      background: #fff;
+      cursor: pointer;
+      transition: all 0.18s ease;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      user-select: none;
+    }
+
+    .topic-card:hover {
+      transform: translateY(-2px);
+      border-color: #93c5fd;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .topic-card.selected {
+      border-color: var(--fr-blue);
+      background: #eff6ff;
+      box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.12);
+    }
+
+    .topic-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .topic-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.45rem;
+      background: #f1f5f9;
+      flex-shrink: 0;
+    }
+
+    .topic-badge {
+      font-size: 0.7rem;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 999px;
+      text-transform: uppercase;
+    }
+
+    .badge-s1 {
+      background: #dbeafe;
+      color: #1e40af;
+    }
+
+    .badge-s2 {
+      background: #fce7f3;
+      color: #9d174d;
+    }
+
+    .topic-title {
+      font-weight: 800;
+      font-size: 0.95rem;
+      color: var(--text-main);
+    }
+
+    .topic-desc {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.35;
+    }
+
+    .topic-actions-mini {
+      display: flex;
+      gap: 6px;
+      margin-top: auto;
+      padding-top: 6px;
+    }
+
+    .mini-btn {
+      font-size: 0.76rem;
+      font-weight: 700;
+      padding: 5px 9px;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      background: #fff;
+      color: var(--fr-blue);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .mini-btn:hover {
+      background: var(--fr-blue);
+      color: #fff;
+      border-color: var(--fr-blue);
+    }
+
+    .check-indicator {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 2px solid #cbd5e1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      color: transparent;
+      transition: all 0.15s;
+    }
+
+    .topic-card.selected .check-indicator {
+      background: var(--fr-blue);
+      border-color: var(--fr-blue);
+      color: #fff;
+    }
+
+    /* Configurador de cantidad y tipo */
+    .config-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      margin-top: 12px;
+    }
+
+    .config-box {
+      background: #f8fafc;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+    }
+
+    .config-label {
+      font-size: 0.88rem;
+      font-weight: 800;
+      color: var(--text-main);
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .pill-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .pill-option {
+      border: 2px solid var(--border-color);
+      background: #fff;
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.86rem;
+      cursor: pointer;
+      transition: all 0.15s;
+      color: var(--text-main);
+    }
+
+    .pill-option:hover {
+      border-color: #93c5fd;
+    }
+
+    .pill-option.active {
+      background: var(--fr-blue);
+      border-color: var(--fr-blue);
+      color: #fff;
+    }
+
+    /* Botones principales */
+    .btn-primary {
+      background: linear-gradient(135deg, #1d4ed8, #2563eb);
+      color: #fff;
+      border: none;
+      padding: 15px 26px;
+      border-radius: var(--radius-md);
+      font-size: 1.05rem;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(29, 78, 216, 0.28);
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px rgba(29, 78, 216, 0.36);
+    }
+
+    .btn-secondary {
+      background: #fff;
+      color: var(--fr-blue-dark);
+      border: 2px solid var(--border-color);
+      padding: 12px 20px;
+      border-radius: var(--radius-md);
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.15s;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--fr-blue);
+      background: #eff6ff;
+    }
+
+    /* Zona de Juego / Quiz */
+    .quiz-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+
+    .progress-wrap {
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .progress-info {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .progress-bar-bg {
+      height: 12px;
+      background: #e2e8f0;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #2563eb, #10b981);
+      border-radius: 999px;
+      transition: width 0.35s ease;
+      width: 0%;
+    }
+
+    .q-type-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 800;
+      background: var(--accent-purple-light);
+      color: var(--accent-purple);
+      margin-bottom: 10px;
+    }
+
+    .q-topic-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      background: #f1f5f9;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+      margin-left: 6px;
+    }
+
+    .question-prompt {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--text-main);
+      margin-bottom: 16px;
+      line-height: 1.35;
+    }
+
+    /* Tarjeta visual / ilustración en preguntas */
+    .visual-stage {
+      background: linear-gradient(135deg, #f8fafc 0%, #eff6ff 100%);
+      border: 2px dashed #bfdbfe;
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      text-align: center;
+      margin-bottom: 18px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .visual-emoji-big {
+      font-size: 4.2rem;
+      line-height: 1.1;
+      filter: drop-shadow(0 6px 12px rgba(0,0,0,0.08));
+      user-select: none;
+    }
+
+    .visual-caption {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--fr-blue-dark);
+      background: #fff;
+      padding: 6px 16px;
+      border-radius: 999px;
+      border: 1px solid #dbeafe;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .speak-btn {
+      border: none;
+      background: var(--fr-blue-light);
+      color: var(--fr-blue);
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s;
+      flex-shrink: 0;
+    }
+
+    .speak-btn:hover {
+      background: var(--fr-blue);
+      color: #fff;
+      transform: scale(1.08);
+    }
+
+    /* Opciones Selección Múltiple */
+    .mc-options-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .mc-option-btn {
+      background: #fff;
+      border: 2px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-main);
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.15s;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .mc-option-btn:hover:not(:disabled) {
+      border-color: var(--fr-blue);
+      background: #eff6ff;
+    }
+
+    .mc-option-btn.selected {
+      border-color: var(--fr-blue);
+      background: #dbeafe;
+    }
+
+    .mc-option-btn.correct {
+      border-color: var(--accent-green);
+      background: var(--accent-green-light);
+      color: #065f46;
+    }
+
+    .mc-option-btn.wrong {
+      border-color: var(--fr-red);
+      background: var(--fr-red-light);
+      color: #991b1b;
+    }
+
+    .mc-letter {
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      background: #f1f5f9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: var(--text-muted);
+      flex-shrink: 0;
+    }
+
+    /* Input de escritura con teclado de acentos */
+    .type-answer-wrap {
+      margin-bottom: 16px;
+    }
+
+    .answer-input-row {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .answer-input {
+      flex: 1;
+      padding: 14px 18px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      border: 2px solid var(--border-color);
+      border-radius: var(--radius-md);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .answer-input:focus {
+      border-color: var(--fr-blue);
+      box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.12);
+    }
+
+    .accents-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+      background: #f8fafc;
+      padding: 8px 12px;
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+    }
+
+    .accents-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-right: 4px;
+    }
+
+    .accent-key {
+      background: #fff;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 5px 11px;
+      font-size: 0.95rem;
+      font-weight: 800;
+      cursor: pointer;
+      color: var(--fr-blue-dark);
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+      transition: all 0.12s;
+    }
+
+    .accent-key:hover {
+      background: var(--fr-blue);
+      color: #fff;
+      border-color: var(--fr-blue);
+    }
+
+    /* Drag & Drop / Ordenar / Asociar Imágenes */
+    .dd-zone-label {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .sentence-slots {
+      min-height: 64px;
+      background: #f8fafc;
+      border: 2px dashed #94a3b8;
+      border-radius: var(--radius-md);
+      padding: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+
+    .word-bank {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 12px;
+      background: #eff6ff;
+      border-radius: var(--radius-md);
+      min-height: 58px;
+      margin-bottom: 16px;
+    }
+
+    .word-chip {
+      background: #fff;
+      border: 2px solid #93c5fd;
+      border-radius: 10px;
+      padding: 9px 15px;
+      font-size: 0.98rem;
+      font-weight: 800;
+      color: var(--fr-blue-dark);
+      cursor: pointer;
+      user-select: none;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      transition: all 0.15s;
+    }
+
+    .word-chip:hover {
+      transform: translateY(-2px);
+      border-color: var(--fr-blue);
+    }
+
+    .word-chip.in-slot {
+      background: var(--fr-blue);
+      color: #fff;
+      border-color: var(--fr-blue-dark);
+    }
+
+    /* Arrastrar imágenes a etiquetas */
+    .image-match-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(185px, 1fr));
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .img-drop-card {
+      background: #fff;
+      border: 2px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 12px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.15s;
+    }
+
+    .img-drop-card.active-target {
+      border-color: var(--fr-blue);
+      background: #eff6ff;
+    }
+
+    .img-drop-emoji {
+      font-size: 2.8rem;
+      line-height: 1.1;
+    }
+
+    .img-drop-hint {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .img-drop-slot {
+      width: 100%;
+      min-height: 42px;
+      border: 2px dashed #94a3b8;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px;
+      font-size: 0.9rem;
+      font-weight: 800;
+      color: var(--fr-blue-dark);
+      background: #f8fafc;
+      cursor: pointer;
+    }
+
+    .img-drop-slot.filled {
+      border-style: solid;
+      border-color: var(--fr-blue);
+      background: var(--fr-blue-light);
+    }
+
+    /* Conectar Ideas / Emparejar columnas */
+    .connect-columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+
+    .connect-col {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .connect-col-title {
+      font-size: 0.82rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-align: center;
+      margin-bottom: 2px;
+    }
+
+    .connect-item {
+      padding: 13px 14px;
+      border-radius: var(--radius-md);
+      border: 2px solid var(--border-color);
+      background: #fff;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.15s;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      min-height: 54px;
+    }
+
+    .connect-item:hover:not(.matched) {
+      border-color: var(--fr-blue);
+      background: #f8fafc;
+    }
+
+    .connect-item.selected {
+      border-color: var(--fr-blue);
+      background: #dbeafe;
+      box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.15);
+    }
+
+    .connect-item.matched {
+      border-color: var(--accent-green);
+      background: var(--accent-green-light);
+      color: #065f46;
+      cursor: default;
+    }
+
+    .connect-item.wrong-flash {
+      border-color: var(--fr-red);
+      background: var(--fr-red-light);
+      animation: shake 0.35s ease;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      75% { transform: translateX(5px); }
+    }
+
+    /* Retroalimentación pedagógica */
+    .feedback-box {
+      border-radius: var(--radius-md);
+      padding: 16px 18px;
+      margin-top: 14px;
+      margin-bottom: 14px;
+      display: none;
+      animation: fadeIn 0.2s ease;
+    }
+
+    .feedback-box.correct {
+      display: block;
+      background: #ecfdf5;
+      border: 2px solid #10b981;
+      color: #064e3b;
+    }
+
+    .feedback-box.wrong {
+      display: block;
+      background: #fef2f2;
+      border: 2px solid #ef4444;
+      color: #7f1d1d;
+    }
+
+    .feedback-title {
+      font-weight: 800;
+      font-size: 1.05rem;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .feedback-explanation {
+      font-size: 0.92rem;
+      line-height: 1.45;
+      margin-top: 6px;
+      background: rgba(255,255,255,0.7);
+      padding: 10px 12px;
+      border-radius: 10px;
+    }
+
+    /* Guía de estudio y Flashcards */
+    .study-layout {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 18px;
+    }
+
+    @media (max-width: 760px) {
+      .study-layout {
+        grid-template-columns: 1fr;
+      }
+      .main-nav {
+        grid-template-columns: 1fr;
+      }
+      .connect-columns {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .study-sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      max-height: 75vh;
+      overflow-y: auto;
+      padding-right: 4px;
+    }
+
+    .study-topic-btn {
+      border: 1px solid var(--border-color);
+      background: #fff;
+      padding: 10px 12px;
+      border-radius: 12px;
+      text-align: left;
+      font-size: 0.86rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.15s;
+      color: var(--text-main);
+    }
+
+    .study-topic-btn:hover {
+      border-color: #93c5fd;
+      background: #f8fafc;
+    }
+
+    .study-topic-btn.active {
+      background: var(--fr-blue);
+      color: #fff;
+      border-color: var(--fr-blue);
+    }
+
+    .rule-callout {
+      background: linear-gradient(135deg, #eff6ff, #f5f3ff);
+      border-left: 5px solid var(--fr-blue);
+      padding: 14px 16px;
+      border-radius: 12px;
+      margin-bottom: 16px;
+      font-size: 0.92rem;
+    }
+
+    .rule-callout h4 {
+      color: var(--fr-blue-dark);
+      margin-bottom: 6px;
+      font-size: 1rem;
+    }
+
+    /* Flashcards Grid */
+    .flashcards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(195px, 1fr));
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .flashcard {
+      background: #fff;
+      border: 2px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 14px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 150px;
+      gap: 6px;
+    }
+
+    .flashcard:hover {
+      border-color: var(--fr-blue);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .flashcard.flipped {
+      background: #eff6ff;
+      border-color: var(--fr-blue);
+    }
+
+    .fc-emoji {
+      font-size: 2.5rem;
+    }
+
+    .fc-fr {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--fr-blue-dark);
+    }
+
+    .fc-es {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: #047857;
+      background: #d1fae5;
+      padding: 3px 10px;
+      border-radius: 999px;
+    }
+
+    .fc-note {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    /* Tabla de verbos */
+    .verb-tables-wrap {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+
+    .verb-table-card {
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    .verb-table-header {
+      background: var(--fr-blue);
+      color: #fff;
+      padding: 10px 14px;
+      font-weight: 800;
+      font-size: 0.95rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .verb-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 14px;
+      border-bottom: 1px solid #f1f5f9;
+      font-size: 0.88rem;
+    }
+
+    .verb-row:last-child {
+      border-bottom: none;
+    }
+
+    .verb-fr {
+      font-weight: 800;
+      color: var(--fr-blue-dark);
+    }
+
+    .verb-es {
+      color: var(--text-muted);
+    }
+
+    /* Resultados finales */
+    .results-hero {
+      text-align: center;
+      padding: 20px 10px;
+    }
+
+    .results-trophy {
+      font-size: 4.5rem;
+      margin-bottom: 8px;
+    }
+
+    .results-score-big {
+      font-size: 2.4rem;
+      font-weight: 900;
+      color: var(--fr-blue-dark);
+    }
+
+    .review-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 16px;
+      text-align: left;
+    }
+
+    .review-item {
+      padding: 12px 16px;
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+      background: #f8fafc;
+      font-size: 0.9rem;
+    }
+
+    .review-item.ok {
+      border-left: 5px solid var(--accent-green);
+    }
+
+    .review-item.bad {
+      border-left: 5px solid var(--fr-red);
+      background: #fff5f5;
+    }
+  </style>
+</head>
+<body>
+  <div class="tricolor-bar"></div>
+
+  <div class="app-container">
+    <!-- ENCABEZADO -->
+    <header class="app-header">
+      <div class="brand">
+        <div class="brand-logo">🥐</div>
+        <div class="brand-text">
+          <h1>Mon Atelier de Français 🇫🇷</h1>
+          <p>Guía interactiva y entrenamiento para las 2 sesiones de revaluación</p>
+        </div>
+      </div>
+      <div class="stats-pills">
+        <div class="stat-pill" title="Estrellas ganadas">⭐ <span id="statStars">0</span> pts</div>
+        <div class="stat-pill" title="Racha actual">🔥 Racha: <span id="statStreak">0</span></div>
+        <div class="stat-pill" title="Rondas completadas">🏆 Rondas: <span id="statRounds">0</span></div>
+      </div>
+    </header>
+
+    <!-- NAVEGACIÓN PRINCIPAL -->
+    <nav class="main-nav">
+      <button class="nav-tab active" onclick="switchMainView('play')" id="tabBtnPlay">
+        🎮 Practicar (Quiz 5-10)
+      </button>
+      <button class="nav-tab" onclick="switchMainView('study')" id="tabBtnStudy">
+        📘 Guía y Flashcards (Chuletas)
+      </button>
+      <button class="nav-tab" onclick="switchMainView('custom')" id="tabBtnCustom">
+        ✏️ Cuaderno (18 Faire y Vocab)
+      </button>
+    </nav>
+
+    <!-- =========================================================
+         VISTA 1: CONFIGURAR Y JUGAR RONDA DE ESTUDIO CORTO
+         ========================================================= -->
+    <section id="viewPlay" class="view-section active">
+      <!-- PANEL DE CONFIGURACIÓN DE RONDA -->
+      <div id="setupPanel">
+        <div class="card">
+          <div class="card-title">🎯 Paso 1: Elige la sesión o los temas que quieres repasar</div>
+          <div class="card-subtitle">Puedes elegir un solo tema, varios temas a la vez o mezclar toda una sesión.</div>
+
+          <div class="session-filter-bar">
+            <button class="session-btn" onclick="selectPresetTopics('s1')" id="presetS1">
+              <span class="s-tag">📅 Primera Sesión · Miércoles 18 Nov</span>
+              <span class="s-name">Seleccionar toda la Sesión 1</span>
+              <span class="s-desc">Presentación, être/avoir/aimer/adorer/détester, negación aimer, profesiones, animales, hobbies, números 0-100</span>
+            </button>
+            <button class="session-btn" onclick="selectPresetTopics('s2')" id="presetS2">
+              <span class="s-tag">📅 Segunda Sesión · Viernes 20 Nov</span>
+              <span class="s-name">Seleccionar toda la Sesión 2</span>
+              <span class="s-desc">Descripción física, verbos faire y aller, negación general, ciudad, 18 expresiones con faire, colores</span>
+            </button>
+            <button class="session-btn" onclick="selectPresetTopics('all')" id="presetAll">
+              <span class="s-tag">🎲 Repaso General Mezclado</span>
+              <span class="s-name">Mezclar Ambas Sesiones (Todos)</span>
+              <span class="s-desc">Preguntas aleatorias combinando los 13 temas del examen</span>
+            </button>
+          </div>
+
+          <div class="topics-grid" id="topicsGrid"></div>
+
+          <div class="config-row">
+            <div class="config-box">
+              <span class="config-label">🔢 Paso 2: Cantidad de preguntas (Formato corto)</span>
+              <div class="pill-group" id="countPillGroup">
+                <button class="pill-option" onclick="setQuestionCount(5)" data-count="5">5 preguntas (Rápido)</button>
+                <button class="pill-option active" onclick="setQuestionCount(8)" data-count="8">8 preguntas (Ideal)</button>
+                <button class="pill-option" onclick="setQuestionCount(10)" data-count="10">10 preguntas (Completo)</button>
+              </div>
+            </div>
+
+            <div class="config-box">
+              <span class="config-label">🕹️ Paso 3: Dinámica de preguntas</span>
+              <div class="pill-group" id="modePillGroup">
+                <button class="pill-option active" onclick="setQuizMode('mixed')" data-mode="mixed">🎲 Súper Dinámico (Todo mezclado)</button>
+                <button class="pill-option" onclick="setQuizMode('visual')" data-mode="visual">🖼️ Imágenes y Arrastrar</button>
+                <button class="pill-option" onclick="setQuizMode('writing')" data-mode="writing">✍️ Traducción y Escritura</button>
+                <button class="pill-option" onclick="setQuizMode('connect')" data-mode="connect">🔗 Conectar y Selección</button>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top: 20px; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between;">
+            <div style="font-size: 0.9rem; color: var(--text-muted); font-weight: 600;" id="selectionSummaryText">
+              Temas seleccionados: 13
+            </div>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+              <button class="btn-secondary" onclick="openStudyForSelected()">
+                📘 Ver Chuleta antes de empezar
+              </button>
+              <button class="btn-primary" onclick="startQuizRound()">
+                🚀 ¡Comenzar Ronda Interactiva!
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PANEL DE JUEGO ACTIVO -->
+      <div id="quizActivePanel" style="display: none;">
+        <div class="card">
+          <div class="quiz-header">
+            <button class="btn-secondary" style="padding: 8px 14px; font-size: 0.85rem;" onclick="exitQuizToSetup()">
+              ⬅️ Cambiar temas
+            </button>
+            <div class="progress-wrap">
+              <div class="progress-info">
+                <span id="qCounterText">Pregunta 1 de 8</span>
+                <span id="qScoreLiveText">Aciertos: 0</span>
+              </div>
+              <div class="progress-bar-bg">
+                <div class="progress-bar-fill" id="qProgressBar"></div>
+              </div>
+            </div>
+          </div>
+
+          <div id="questionContainer"></div>
+
+          <div id="feedbackContainer" class="feedback-box"></div>
+
+          <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 14px;">
+            <button class="btn-primary" id="btnCheckAnswer" onclick="checkCurrentAnswer()">
+              ✅ Comprobar Respuesta
+            </button>
+            <button class="btn-primary" id="btnNextQuestion" onclick="nextQuestion()" style="display: none;">
+              Siguiente Pregunta ➡️
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- PANEL DE RESULTADOS DE LA RONDA -->
+      <div id="quizResultsPanel" style="display: none;">
+        <div class="card results-hero">
+          <div class="results-trophy" id="resTrophy">🏆</div>
+          <h2 id="resTitle" style="font-size: 1.6rem; color: var(--fr-blue-dark);">¡Ronda Completada!</h2>
+          <p id="resSubtitle" style="color: var(--text-muted); margin-bottom: 12px;">Excelente trabajo practicando francés.</p>
+          <div class="results-score-big" id="resScoreBig">8 / 8</div>
+
+          <div style="display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin: 20px 0;">
+            <button class="btn-primary" onclick="startQuizRound()">
+              🔄 Jugar otra ronda (Nuevas preguntas)
+            </button>
+            <button class="btn-secondary" id="btnRetryMistakes" onclick="retryMistakesOnly()" style="display: none; border-color: var(--fr-red); color: var(--fr-red);">
+              🎯 Repasar solo mis errores
+            </button>
+            <button class="btn-secondary" onclick="exitQuizToSetup()">
+              ⚙️ Elegir otros temas
+            </button>
+          </div>
+
+          <div class="review-list" id="resReviewList"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         VISTA 2: GUÍA INTERACTIVA Y FLASHCARDS ("CHULETAS")
+         ========================================================= -->
+    <section id="viewStudy" class="view-section">
+      <div class="card">
+        <div class="card-title">📘 Guía Interactiva de Estudio y Pronunciación</div>
+        <div class="card-subtitle">
+          Toca cualquier tarjeta para escuchar cómo suena en francés 🔊 o ver ejemplos y trucos de memoria antes de hacer el test.
+        </div>
+
+        <div class="study-layout">
+          <div class="study-sidebar" id="studySidebar"></div>
+          <div id="studyContentArea"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         VISTA 3: PERSONALIZAR CUADERNO (18 EXPRESIONES FAIRE Y VOCAB)
+         ========================================================= -->
+    <section id="viewCustom" class="view-section">
+      <div class="card">
+        <div class="card-title">✏️ Cuaderno de Clase: Las 18 Expresiones con "Faire" y Vocabulario</div>
+        <div class="card-subtitle">
+          Aquí están cargadas las 18 expresiones con el verbo <strong>faire</strong> y el vocabulario de ambas sesiones. Puedes editarlas o añadir cualquier palabra exacta del cuaderno y se incluirá automáticamente en todos los juegos.
+        </div>
+
+        <div class="rule-callout">
+          <h4>💡 ¿Cómo funciona este editor?</h4>
+          <p>Todo cambio que hagas aquí se guarda en este dispositivo automáticamente. También puedes enviarme fotos del cuaderno en el chat para que yo las actualice directamente por ti.</p>
+        </div>
+
+        <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 16px;">
+          <select id="customCategorySelect" class="answer-input" style="max-width: 340px; padding: 10px 14px; font-size: 0.95rem;" onchange="renderCustomEditorList()">
+            <option value="s2_expresiones_faire">⭐ Las 18 expresiones con el verbo FAIRE</option>
+            <option value="s1_profesiones">👩‍⚕️ Sesión 1: Las profesiones</option>
+            <option value="s1_animales">🐶 Sesión 1: Los animales</option>
+            <option value="s1_hobbies">⚽ Sesión 1: Los hobbies / pasatiempos</option>
+            <option value="s2_ciudad">🏛️ Sesión 2: Lugares de la ciudad</option>
+            <option value="s2_colores">🎨 Sesión 2: Los colores</option>
+            <option value="s2_descripcion">🧑 Sesión 2: Descripción física</option>
+          </select>
+          <button class="btn-secondary" onclick="resetCustomToDefaults()" style="margin-left: auto;">
+            🔄 Restaurar lista original
+          </button>
+        </div>
+
+        <!-- Formulario para agregar un ítem nuevo -->
+        <div class="config-box" style="margin-bottom: 16px;">
+          <span class="config-label">➕ Agregar o actualizar expresión del cuaderno en esta categoría</span>
+          <div style="display: grid; grid-template-columns: 90px 1fr 1fr auto; gap: 8px; align-items: center;">
+            <input type="text" id="newItemEmoji" class="answer-input" placeholder="Emoji 🎨" value="✨" style="padding: 10px; text-align: center;" />
+            <input type="text" id="newItemFr" class="answer-input" placeholder="En francés (ej. faire du skate)" style="padding: 10px; font-size: 0.95rem;" />
+            <input type="text" id="newItemEs" class="answer-input" placeholder="En español (ej. montar patineta)" style="padding: 10px; font-size: 0.95rem;" />
+            <button class="btn-primary" style="padding: 11px 16px; font-size: 0.9rem;" onclick="addCustomVocabItem()">Guardar</button>
+          </div>
+        </div>
+
+        <div id="customItemsList" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 10px;"></div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    /* =========================================================================
+       1. BASE DE CONOCIMIENTO COMPLETA (SESIÓN 1 Y SESIÓN 2)
+       ========================================================================= */
+    const TOPICS_META = [
+      // SESIÓN 1 - Miércoles 18 de noviembre
+      {
+        id: 's1_presentacion',
+        session: 's1',
+        badge: 'Sesión 1 · Mié 18',
+        icon: '👋',
+        title: 'Presentación Personal',
+        desc: 'Presentarse a sí mismo (Je m\'appelle, J\'ai... ans) y presentar a otro (Il/Elle s\'appelle, Voici...).'
+      },
+      {
+        id: 's1_verbos',
+        session: 's1',
+        badge: 'Sesión 1 · Mié 18',
+        icon: '⚡',
+        title: 'Verbos: être, avoir, aimer, adorer, détester',
+        desc: 'Conjugación de ser/estar, tener y verbos de gustos y preferencias.'
+      },
+      {
+        id: 's1_negacion_aimer',
+        session: 's1',
+        badge: 'Sesión 1 · Mié 18',
+        icon: '🚫',
+        title: 'La Negación del verbo Aimer',
+        desc: 'Cómo usar n\'aime pas / ne... pas con el verbo aimer y los gustos.'
+      },
+      {
+        id: 's1_profesiones',
+        session: 's1',
+        badge: 'Sesión 1 · Mié 18',
+        icon: '👩‍⚕️',
+        title: 'Vocabulario: Las Profesiones',
+        desc: 'Médecin, professeur, pompier, cuisinier, vétérinaire, musicien...'
+      },
+      {
+        id: 's1_animales',
+        session: 's1',
+        badge: 'Sesión 1 · Mié 18',
+        icon: '🐶',
+        title: 'Vocabulario: Los Animales',
+        desc: 'Chien, chat, cheval, oiseau, lapin, lion, tortue, poisson...'
+      },
+      {
+        id: 's1_hobbies',
+        session: 's1',
+        badge: 'Sesión 1 · Mié 18',
+        icon: '⚽',
+        title: 'Vocabulario: Los Hobbies',
+        desc: 'Pasatiempos: écouter de la musique, danser, nager, lire, dessiner...'
+      },
+      {
+        id: 's1_numeros',
+        session: 's1',
+        badge: 'Sesión 1 · Mié 18',
+        icon: '🔢',
+        title: 'Números del 0 al 100',
+        desc: 'Del 0 (zéro) al 100 (cent), incluyendo 70 (soixante-dix), 80 y 90.'
+      },
+
+      // SESIÓN 2 - Viernes 20 de noviembre
+      {
+        id: 's2_descripcion',
+        session: 's2',
+        badge: 'Sesión 2 · Vie 20',
+        icon: '🧑',
+        title: 'La Descripción Física',
+        desc: 'Describirse a sí mismo y a otro: estatura, cabello (cheveux), ojos (yeux).'
+      },
+      {
+        id: 's2_verbos_faire_aller',
+        session: 's2',
+        badge: 'Sesión 2 · Vie 20',
+        icon: '🚀',
+        title: 'Verbos: Faire y Aller',
+        desc: 'Conjugación completa de Faire (hacer) y Aller (ir) + au / à la / aux.'
+      },
+      {
+        id: 's2_negacion_general',
+        session: 's2',
+        badge: 'Sesión 2 · Vie 20',
+        icon: '🛑',
+        title: 'La Negación General (ne... pas)',
+        desc: 'El "sándwich" de la negación (ne + verbo + pas / n\' + vocal + pas).'
+      },
+      {
+        id: 's2_ciudad',
+        session: 's2',
+        badge: 'Sesión 2 · Vie 20',
+        icon: '🏛️',
+        title: 'Lugares de la Ciudad',
+        desc: 'École, hôpital, parc, cinéma, boulangerie, supermarché, musée, gare...'
+      },
+      {
+        id: 's2_expresiones_faire',
+        session: 's2',
+        badge: 'Sesión 2 · Vie 20',
+        icon: '📓',
+        title: '18 Expresiones con Faire',
+        desc: 'Las 18 expresiones del cuaderno: faire du sport, faire les devoirs, il fait beau...'
+      },
+      {
+        id: 's2_colores',
+        session: 's2',
+        badge: 'Sesión 2 · Vie 20',
+        icon: '🎨',
+        title: 'Vocabulario: Los Colores',
+        desc: 'Rouge, bleu, vert, jaune, blanc/blanche, noir, violet, rose, marron...'
+      }
+    ];
+
+    const DEFAULT_VOCAB_DB = {
+      s1_presentacion: [
+        { emoji: '🙋‍♂️', fr: "Je m'appelle Lucas", es: 'Me llamo Lucas', note: 'Para decir tu propio nombre usa: Je m\'appelle...' },
+        { emoji: '👦', fr: "Il s'appelle Thomas", es: 'Él se llama Thomas', note: 'Para presentar a un chico (él): Il s\'appelle...' },
+        { emoji: '👧', fr: "Elle s'appelle Camille", es: 'Ella se llama Camille', note: 'Para presentar a una chica (ella): Elle s\'appelle...' },
+        { emoji: '🎂', fr: "J'ai dix ans", es: 'Tengo diez años', note: '¡Ojo! En francés la edad se dice con el verbo AVOIR (tener): J\'ai ... ans.' },
+        { emoji: '🎈', fr: 'Il a onze ans', es: 'Él tiene once años', note: 'Tercera persona con el verbo avoir: Il a / Elle a ... ans.' },
+        { emoji: '🏠', fr: "J'habite à Bogota", es: 'Vivo en Bogotá', note: 'Con ciudades se usa la preposición "à": J\'habite à...' },
+        { emoji: '🏡', fr: 'Elle habite à Paris', es: 'Ella vive en París', note: 'Para presentar dónde vive otra persona: Il/Elle habite à...' },
+        { emoji: '🇨🇴', fr: 'Je suis colombien', es: 'Soy colombiano', note: 'Nacionalidad o profesión usa el verbo ÊTRE (Je suis).' },
+        { emoji: '🎒', fr: 'Je suis étudiant', es: 'Soy estudiante', note: 'Para femenino se agrega -e: Je suis étudiante.' },
+        { emoji: '👉', fr: 'Voici mon ami Paul', es: 'Aquí está mi amigo Paul / Este es mi amigo Paul', note: '"Voici" o "C\'est" sirven para presentar a alguien.' }
+      ],
+      s1_verbos: [
+        { emoji: '⭐', fr: 'Je suis', es: 'Yo soy / estoy', note: 'Verbo ÊTRE (1ra persona singular)' },
+        { emoji: '⭐', fr: 'Tu es', es: 'Tú eres / estás', note: 'Verbo ÊTRE (2da persona singular)' },
+        { emoji: '⭐', fr: 'Il est / Elle est', es: 'Él es / Ella es', note: 'Verbo ÊTRE (3ra persona singular)' },
+        { emoji: '⭐', fr: 'Nous sommes', es: 'Nosotros somos / estamos', note: 'Verbo ÊTRE (1ra persona plural)' },
+        { emoji: '⭐', fr: 'Vous êtes', es: 'Ustedes son / Vosotros sois', note: 'Verbo ÊTRE (2da persona plural)' },
+        { emoji: '⭐', fr: 'Ils sont / Elles sont', es: 'Ellos son / Ellas son', note: 'Verbo ÊTRE (3ra persona plural)' },
+        { emoji: '🎒', fr: "J'ai", es: 'Yo tengo', note: 'Verbo AVOIR: Je cambia a J\' antes de vocal.' },
+        { emoji: '🎒', fr: 'Tu as', es: 'Tú tienes', note: 'Verbo AVOIR (lleva una -s al final).' },
+        { emoji: '🎒', fr: 'Il a / Elle a', es: 'Él tiene / Ella tiene', note: 'Verbo AVOIR (sin -s).' },
+        { emoji: '🎒', fr: 'Nous avons', es: 'Nosotros tenemos', note: 'Verbo AVOIR (1ra persona plural).' },
+        { emoji: '🎒', fr: 'Vous avez', es: 'Ustedes tienen', note: 'Verbo AVOIR (2da persona plural).' },
+        { emoji: '🎒', fr: 'Ils ont / Elles ont', es: 'Ellos tienen / Ellas tienen', note: '¡Cuidado! "Ils ont" (tienen) con O vs "Ils sont" (son) con S.' },
+        { emoji: '❤️', fr: "J'aime", es: 'Me gusta / Yo amo', note: 'Verbo AIMER (termina en -e con Je).' },
+        { emoji: '😍', fr: "J'adore", es: 'Me encanta / Yo adoro', note: 'Verbo ADORER (más intenso que aimer).' },
+        { emoji: '🤢', fr: 'Je déteste', es: 'Yo detesto / No soporto', note: 'Verbo DÉTESTER (lo opuesto a adorer).' },
+        { emoji: '❤️', fr: 'Nous aimons', es: 'Nos gusta / Nosotros amamos', note: 'Terminación -ons para Nous en verbos -ER.' },
+        { emoji: '😍', fr: 'Ils adorent', es: 'A ellos les encanta', note: 'Terminación -ent (muda) para Ils/Elles.' }
+      ],
+      s1_negacion_aimer: [
+        { emoji: '🙅‍♂️', fr: "Je n'aime pas", es: 'No me gusta', note: 'Como "aime" empieza por vocal, "ne" se convierte en "n\'" → Je n\'aime pas.' },
+        { emoji: '🙅‍♀️', fr: "Tu n'aimes pas", es: 'A ti no te gusta', note: 'Con "Tu", el verbo aimer lleva -es: Tu n\'aimes pas.' },
+        { emoji: '🙅', fr: "Il n'aime pas", es: 'A él no le gusta', note: 'Con Il/Elle termina en -e: Il n\'aime pas.' },
+        { emoji: '🙅‍♀️', fr: "Elle n'aime pas", es: 'A ella no le gusta', note: 'Recuerda el sándwich: Elle + n\' + aime + pas.' },
+        { emoji: '🙌', fr: "Nous n'aimons pas", es: 'A nosotros no nos gusta', note: 'Nous + n\' + aimons + pas.' },
+        { emoji: '🗣️', fr: "Vous n'aimez pas", es: 'A ustedes no les gusta', note: 'Vous + n\' + aimez + pas.' },
+        { emoji: '👥', fr: "Ils n'aiment pas", es: 'A ellos no les gusta', note: 'Ils + n\' + aiment + pas.' },
+        { emoji: '🥦', fr: "Je n'aime pas les légumes", es: 'No me gustan las verduras', note: 'Con aimer/détester SIEMPRE se conserva el artículo (le, la, les) incluso en negación.' },
+        { emoji: '🕷️', fr: "Elle n'aime pas les araignées", es: 'A ella no le gustan las arañas', note: 'n\'aime pas + les araignées.' },
+        { emoji: '🎸', fr: "Je n'adore pas le rock", es: 'No me encanta el rock', note: 'Adorer también empieza por vocal: Je n\'adore pas.' }
+      ],
+      s1_profesiones: [
+        { emoji: '🩺', fr: 'le médecin', es: 'el médico / doctor', note: 'Sirve para masculino y femenino (un/une médecin).' },
+        { emoji: '👩‍🏫', fr: 'le professeur', es: 'el profesor / maestro', note: 'En el colegio a veces se abrevia "le prof".' },
+        { emoji: '🚒', fr: 'le pompier', es: 'el bombero', note: 'Femenino: la pompière.' },
+        { emoji: '👨‍🍳', fr: 'le cuisinier', es: 'el cocinero / chef', note: 'Femenino: la cuisinière.' },
+        { emoji: '🐾', fr: 'le vétérinaire', es: 'el veterinario', note: 'Cuida a los animales (les animaux).' },
+        { emoji: '👮', fr: 'le policier', es: 'el policía', note: 'Femenino: la policière.' },
+        { emoji: '🥖', fr: 'le boulanger', es: 'el panadero', note: 'Trabaja en la boulangerie. Femenino: la boulangère.' },
+        { emoji: '🎤', fr: 'le chanteur / la chanteuse', es: 'el cantante / la cantante', note: 'Terminación -eur cambia a -euse en femenino.' },
+        { emoji: '🎭', fr: "l'acteur / l'actrice", es: 'el actor / la actriz', note: 'Terminación -teur cambia a -trice.' },
+        { emoji: '✈️', fr: 'le pilote', es: 'el piloto', note: 'Conduce aviones.' },
+        { emoji: '🦷', fr: 'le dentiste', es: 'el dentista', note: 'Cuida los dientes.' },
+        { emoji: '🎨', fr: "l'artiste", es: 'el / la artista', note: 'Lleva apóstrofe l\' porque empieza por vocal.' },
+        { emoji: '🎻', fr: 'le musicien', es: 'el músico', note: 'Femenino: la musicienne.' },
+        { emoji: '🏗️', fr: "l'ingénieur", es: 'el ingeniero', note: 'Empieza por vocal: l\'ingénieur.' }
+      ],
+      s1_animales: [
+        { emoji: '🐶', fr: 'le chien', es: 'el perro', note: 'Femenino: la chienne.' },
+        { emoji: '🐱', fr: 'le chat', es: 'el gato', note: 'La "t" final no suena.' },
+        { emoji: '🐴', fr: 'le cheval', es: 'el caballo', note: 'Plural irregular: les chevaux.' },
+        { emoji: '🐦', fr: "l'oiseau", es: 'el pájaro / el ave', note: '"oi" suena "ua" y "eau" suena "o" → [uazó].' },
+        { emoji: '🐟', fr: 'le poisson', es: 'el pez / pescado', note: 'Con doble s (poisson).' },
+        { emoji: '🐰', fr: 'le lapin', es: 'el conejo', note: 'Animal muy común en vocabulario escolar.' },
+        { emoji: '🦁', fr: 'le lion', es: 'el león', note: 'Femenino: la lionne.' },
+        { emoji: '🐘', fr: "l'éléphant", es: 'el elefante', note: 'ph suena como f.' },
+        { emoji: '🐢', fr: 'la tortue', es: 'la tortuga', note: 'Es femenino: la tortue.' },
+        { emoji: '🐄', fr: 'la vache', es: 'la vaca', note: 'ch suena como "sh" suave.' },
+        { emoji: '🐵', fr: 'le singe', es: 'el mono', note: 'Es masculino: le singe.' },
+        { emoji: '🐷', fr: 'le cochon', es: 'el cerdo', note: 'También existe "le porc".' },
+        { emoji: '🐭', fr: 'la souris', es: 'el ratón', note: '¡Atención! En francés "la souris" es femenino.' },
+        { emoji: '🦆', fr: 'le canard', es: 'el pato', note: 'La d final es muda.' },
+        { emoji: '🐻', fr: "l'ours", es: 'el oso', note: 'ou suena como u.' }
+      ],
+      s1_hobbies: [
+        { emoji: '🎧', fr: 'écouter de la musique', es: 'escuchar música', note: 'J\'aime écouter de la musique.' },
+        { emoji: '⚽', fr: 'jouer au football', es: 'jugar al fútbol', note: 'Con deportes de pelota se usa "jouer au...".' },
+        { emoji: '🎮', fr: 'jouer aux jeux vidéo', es: 'jugar videojuegos', note: 'Plural: aux jeux vidéo.' },
+        { emoji: '📖', fr: 'lire un livre', es: 'leer un libro', note: 'Verbo lire (leer).' },
+        { emoji: '📺', fr: 'regarder la télévision', es: 'ver la televisión', note: 'También se dice "regarder la télé".' },
+        { emoji: '💃', fr: 'danser', es: 'bailar', note: 'Verbo regular de 1er grupo (-er).' },
+        { emoji: '🎤', fr: 'chanter', es: 'cantar', note: 'J\'adore chanter.' },
+        { emoji: '🏊', fr: 'nager', es: 'nadar', note: 'Con nous se escribe: nous nageons.' },
+        { emoji: '🖍️', fr: 'dessiner', es: 'dibujar', note: 'Hacer dibujos (dessins).' },
+        { emoji: '🍳', fr: 'cuisiner', es: 'cocinar', note: 'También "faire la cuisine".' },
+        { emoji: '✈️', fr: 'voyager', es: 'viajar', note: 'J\'aime voyager.' },
+        { emoji: '😴', fr: 'dormir', es: 'dormir', note: 'J\'adore dormir.' },
+        { emoji: '🎬', fr: 'aller au cinéma', es: 'ir al cine', note: 'Pasatiempo clásico.' }
+      ],
+      s1_numeros: [
+        { emoji: '0️⃣', fr: 'zéro', es: 'cero (0)', note: 'Lleva tilde en la é: zéro.' },
+        { emoji: '5️⃣', fr: 'cinq', es: 'cinco (5)', note: '1 un, 2 deux, 3 trois, 4 quatre, 5 cinq.' },
+        { emoji: '🔟', fr: 'dix', es: 'diez (10)', note: '6 six, 7 sept, 8 huit, 9 neuf, 10 dix.' },
+        { emoji: '🔢', fr: 'quinze', es: 'quince (15)', note: '11 onze, 12 douze, 13 treize, 14 quatorze, 15 quinze, 16 seize.' },
+        { emoji: '🔢', fr: 'vingt', es: 'veinte (20)', note: 'La g y la t son mudas en veinte solo.' },
+        { emoji: '🔢', fr: 'vingt et un', es: 'veintiuno (21)', note: 'Con el 1 se usa "et un" (21, 31, 41, 51, 61).' },
+        { emoji: '🔢', fr: 'trente', es: 'treinta (30)', note: '30 trente, 40 quarante, 50 cinquante.' },
+        { emoji: '🔢', fr: 'quarante-deux', es: 'cuarenta y dos (42)', note: 'Del 2 al 9 se unen con guion (-).' },
+        { emoji: '🔢', fr: 'cinquante', es: 'cincuenta (50)', note: 'Cinquante.' },
+        { emoji: '🔢', fr: 'soixante', es: 'sesenta (60)', note: 'La x suena como "s" → [suasant].' },
+        { emoji: '🧠', fr: 'soixante-dix', es: 'setenta (70)', note: '¡Truco matemático! 70 = 60 + 10 (soixante-dix).' },
+        { emoji: '🧠', fr: 'soixante-quinze', es: 'setenta y cinco (75)', note: '75 = 60 + 15 (soixante-quinze).' },
+        { emoji: '🧠', fr: 'quatre-vingts', es: 'ochenta (80)', note: '¡Truco! 80 = 4 veces 20 (quatre-vingts, lleva -s si va exacto).' },
+        { emoji: '🧠', fr: 'quatre-vingt-dix', es: 'noventa (90)', note: '¡Truco! 90 = 80 + 10 (quatre-vingt-dix).' },
+        { emoji: '🧠', fr: 'quatre-vingt-onze', es: 'noventa y uno (91)', note: '91 = 80 + 11 (quatre-vingt-onze).' },
+        { emoji: '💯', fr: 'cent', es: 'cien (100)', note: 'La t final es muda.' }
+      ],
+      s2_descripcion: [
+        { emoji: '📏', fr: 'Je suis grand / grande', es: 'Soy alto / alta', note: 'Para estatura se usa el verbo ÊTRE (Je suis / Il est / Elle est).' },
+        { emoji: '🤏', fr: 'Il est petit / Elle est petite', es: 'Él es bajo / Ella es baja', note: 'En femenino se agrega una -e al final.' },
+        { emoji: '🏃', fr: 'Il est mince', es: 'Él es delgado', note: '"Mince" ya termina en -e, sirve para masculino y femenino.' },
+        { emoji: '👱', fr: 'Elle est blonde', es: 'Ella es rubia', note: 'Masculino: Il est blond. Femenino: Elle est blonde.' },
+        { emoji: '🧑', fr: 'Il est brun / Elle est brune', es: 'Él es moreno (pelo castaño/oscuro) / Ella es morena', note: 'Para cabello oscuro.' },
+        { emoji: '👩‍🦰', fr: 'Il est roux / Elle est rousse', es: 'Él es pelirrojo / Ella es pelirroja', note: 'Femenino irregular: roux → rousse.' },
+        { emoji: '✨', fr: 'Il est beau / Elle est belle', es: 'Él es guapo / Ella es bella', note: 'Irregular muy importante: beau (masc) / belle (fem).' },
+        { emoji: '👶', fr: 'Il est jeune', es: 'Él es joven', note: 'Opuesto: Il est vieux / Elle est vieille (viejo/a).' },
+        { emoji: '👀', fr: "J'ai les yeux bleus", es: 'Tengo los ojos azules', note: '¡Ojo! Para ojos y cabello se usa AVOIR (tener): J\'ai les yeux...' },
+        { emoji: '👁️', fr: 'Elle a les yeux verts', es: 'Ella tiene los ojos verdes', note: 'Tercera persona: Il a / Elle a les yeux verts.' },
+        { emoji: '👁️', fr: 'Il a les yeux marron', es: 'Él tiene los ojos cafés / marrones', note: '¡Truco de examen! "marron" NUNCA lleva -s en plural.' },
+        { emoji: '💇‍♀️', fr: "J'ai les cheveux longs", es: 'Tengo el cabello largo', note: 'En francés "el cabello" siempre se dice en plural: les cheveux.' },
+        { emoji: '💇‍♂️', fr: 'Il a les cheveux courts', es: 'Él tiene el cabello corto', note: 'courts = cortos.' },
+        { emoji: '👩‍🦱', fr: 'Elle a les cheveux frisés', es: 'Ella tiene el cabello rizado / crespo', note: 'Liso se dice: les cheveux raides / lisses.' }
+      ],
+      s2_verbos_faire_aller: [
+        { emoji: '🛠️', fr: 'Je fais', es: 'Yo hago', note: 'Verbo FAIRE (1ra persona singular - termina en -s).' },
+        { emoji: '🛠️', fr: 'Tu fais', es: 'Tú haces', note: 'Verbo FAIRE (2da persona singular - igual que je fais).' },
+        { emoji: '🛠️', fr: 'Il fait / Elle fait', es: 'Él hace / Ella hace', note: 'Verbo FAIRE (3ra persona singular - termina en -t).' },
+        { emoji: '🛠️', fr: 'Nous faisons', es: 'Nosotros hacemos', note: 'Verbo FAIRE (1ra persona plural).' },
+        { emoji: '🛠️', fr: 'Vous faites', es: 'Ustedes hacen / Vosotros hacéis', note: '¡Irregular estrella de examen! No es faisez, es VOUS FAITES.' },
+        { emoji: '🛠️', fr: 'Ils font / Elles font', es: 'Ellos hacen / Ellas hacen', note: '¡Irregular! Empieza por f-o-n-t: ILS FONT.' },
+        { emoji: '🚶', fr: 'Je vais', es: 'Yo voy', note: 'Verbo ALLER (1ra persona singular).' },
+        { emoji: '🚶', fr: 'Tu vas', es: 'Tú vas', note: 'Verbo ALLER (2da persona singular).' },
+        { emoji: '🚶', fr: 'Il va / Elle va', es: 'Él va / Ella va', note: 'Verbo ALLER (3ra persona singular, sin -s).' },
+        { emoji: '🚶', fr: 'Nous allons', es: 'Nosotros vamos', note: 'Verbo ALLER (1ra persona plural).' },
+        { emoji: '🚶', fr: 'Vous allez', es: 'Ustedes van', note: 'Verbo ALLER (2da persona plural).' },
+        { emoji: '🚶', fr: 'Ils vont / Elles vont', es: 'Ellos van / Ellas van', note: 'Verbo ALLER (3ra persona plural: ILS VONT).' },
+        { emoji: '📍', fr: 'Je vais au parc', es: 'Voy al parque', note: 'Con lugar masculino (le parc): à + le = AU.' },
+        { emoji: '📍', fr: 'Tu vas à la piscine', es: 'Vas a la piscina', note: 'Con lugar femenino (la piscine): À LA.' },
+        { emoji: '📍', fr: "Il va à l'école", es: 'Él va a la escuela', note: 'Con vocal o h muda: À L\'.' }
+      ],
+      s2_negacion_general: [
+        { emoji: '🛑', fr: 'Je ne suis pas grand', es: 'Yo no soy alto', note: 'Sándwich: Sujeto + NE + verbo (suis) + PAS.' },
+        { emoji: '🛑', fr: 'Il ne fait pas les devoirs', es: 'Él no hace las tareas', note: 'NE antes de "fait" y PAS después de "fait".' },
+        { emoji: '🛑', fr: 'Nous ne sommes pas fatigués', es: 'Nosotros no estamos cansados', note: 'Nous + ne + sommes + pas.' },
+        { emoji: '🛑', fr: 'Je ne vais pas au cinéma', es: 'Yo no voy al cine', note: 'Je + ne + vais + pas.' },
+        { emoji: '🔤', fr: "Je n'ai pas de chien", es: 'No tengo perro', note: 'Antes de vocal ("ai") NE cambia a N\'. Además "un/une" cambia a "de" en negación.' },
+        { emoji: '🔤', fr: "Elle n'habite pas à Lyon", es: 'Ella no vive en Lyon', note: 'Antes de H muda ("habite") también se usa N\': Elle n\'habite pas.' },
+        { emoji: '🔤', fr: "Il n'est pas français", es: 'Él no es francés', note: 'Como "est" empieza por vocal: Il n\'est pas.' },
+        { emoji: '🔤', fr: "Ils n'ont pas faim", es: 'Ellos no tienen hambre', note: 'Como "ont" empieza por vocal: Ils n\'ont pas.' },
+        { emoji: '🛑', fr: 'Vous ne faites pas attention', es: 'Ustedes no prestan atención', note: 'Vous + ne + faites + pas.' }
+      ],
+      s2_ciudad: [
+        { emoji: '🏫', fr: "l'école", es: 'la escuela / el colegio', note: 'Empieza por vocal → à l\'école.' },
+        { emoji: '🏥', fr: "l'hôpital", es: 'el hospital', note: 'Empieza por h muda → à l\'hôpital.' },
+        { emoji: '🏦', fr: 'la banque', es: 'el banco', note: 'En francés es femenino: à la banque.' },
+        { emoji: '🛒', fr: 'le supermarché', es: 'el supermercado', note: 'Masculino → au supermarché.' },
+        { emoji: '🌳', fr: 'le parc', es: 'el parque', note: 'Masculino → au parc.' },
+        { emoji: '🎬', fr: 'le cinéma', es: 'el cine', note: 'Masculino → au cinéma.' },
+        { emoji: '📚', fr: 'la bibliothèque', es: 'la biblioteca', note: 'Para leer y estudiar → à la bibliothèque.' },
+        { emoji: '🍽️', fr: 'le restaurant', es: 'el restaurante', note: 'Masculino → au restaurant.' },
+        { emoji: '🥐', fr: 'la boulangerie', es: 'la panadería', note: 'Donde compramos pan y croissants → à la boulangerie.' },
+        { emoji: '💊', fr: 'la pharmacie', es: 'la farmacia / droguería', note: 'Femenino → à la pharmacie.' },
+        { emoji: '🖼️', fr: 'le musée', es: 'el museo', note: 'Masculino → au musée.' },
+        { emoji: '🚆', fr: 'la gare', es: 'la estación de tren', note: 'Femenino → à la gare.' },
+        { emoji: '✈️', fr: "l'aéroport", es: 'el aeropuerto', note: 'Empieza por vocal → à l\'aéroport.' },
+        { emoji: '🏊', fr: 'la piscine', es: 'la piscina', note: 'Femenino → à la piscine.' },
+        { emoji: '🏟️', fr: 'le stade', es: 'el estadio', note: 'Masculino → au stade.' },
+        { emoji: '🏤', fr: 'la poste', es: 'la oficina de correos', note: 'Femenino → à la poste.' }
+      ],
+      s2_expresiones_faire: [
+        { emoji: '📝', fr: 'faire les devoirs', es: 'hacer las tareas / los deberes', note: 'Expresión #1 con faire: Je fais les devoirs.' },
+        { emoji: '🍳', fr: 'faire la cuisine', es: 'hacer la comida / cocinar', note: 'Expresión #2 con faire: Elle fait la cuisine.' },
+        { emoji: '🧹', fr: 'faire le ménage', es: 'hacer el aseo / limpiar la casa', note: 'Expresión #3 con faire.' },
+        { emoji: '🍽️', fr: 'faire la vaisselle', es: 'lavar los platos / la loza', note: 'Expresión #4 con faire.' },
+        { emoji: '🛏️', fr: 'faire le lit', es: 'tender / hacer la cama', note: 'Expresión #5 con faire.' },
+        { emoji: '🛍️', fr: 'faire les courses', es: 'hacer el mercado / las compras', note: 'Expresión #6 con faire.' },
+        { emoji: '🏃', fr: 'faire du sport', es: 'hacer deporte', note: 'Expresión #7 con faire.' },
+        { emoji: '🚴', fr: 'faire du vélo', es: 'montar en bicicleta / hacer ciclismo', note: 'Expresión #8 con faire.' },
+        { emoji: '🏊', fr: 'faire de la natation', es: 'hacer natación / nadar', note: 'Expresión #9 con faire.' },
+        { emoji: '🎹', fr: 'faire du piano', es: 'tocar el piano / practicar piano', note: 'Expresión #10 con faire (con instrumentos se usa faire du/de la).' },
+        { emoji: '🚶‍♂️', fr: 'faire une promenade', es: 'dar un paseo / hacer una caminata', note: 'Expresión #11 con faire.' },
+        { emoji: '🎉', fr: 'faire la fête', es: 'hacer fiesta / festejar', note: 'Expresión #12 con faire.' },
+        { emoji: '⚠️', fr: 'faire attention', es: 'prestar atención / tener cuidado', note: 'Expresión #13 con faire.' },
+        { emoji: '🛒', fr: 'faire du shopping', es: 'ir de compras / hacer shopping', note: 'Expresión #14 con faire.' },
+        { emoji: '☀️', fr: 'il fait beau', es: 'hace buen tiempo / buen clima', note: 'Expresión #15 (Clima con faire).' },
+        { emoji: '🌧️', fr: 'il fait mauvais', es: 'hace mal tiempo / mal clima', note: 'Expresión #16 (Clima con faire).' },
+        { emoji: '🥵', fr: 'il fait chaud', es: 'hace calor', note: 'Expresión #17 (Clima con faire).' },
+        { emoji: '🥶', fr: 'il fait froid', es: 'hace frío', note: 'Expresión #18 (Clima con faire).' }
+      ],
+      s2_colores: [
+        { emoji: '🔴', fr: 'rouge', es: 'rojo / roja', note: 'Termina en -e, es igual en masculino y femenino.' },
+        { emoji: '🔵', fr: 'bleu / bleue', es: 'azul', note: 'En femenino se agrega -e: bleue.' },
+        { emoji: '🟢', fr: 'vert / verte', es: 'verde', note: 'En femenino suena la t: verte.' },
+        { emoji: '🟡', fr: 'jaune', es: 'amarillo / amarilla', note: 'Igual para masculino y femenino.' },
+        { emoji: '⚫', fr: 'noir / noire', es: 'negro / negra', note: 'En femenino se agrega -e: noire.' },
+        { emoji: '⚪', fr: 'blanc / blanche', es: 'blanco / blanca', note: '¡Irregular de examen! Femenino de blanc es BLANCHE.' },
+        { emoji: '🩶', fr: 'gris / grise', es: 'gris', note: 'Femenino: grise.' },
+        { emoji: '🩷', fr: 'rose', es: 'rosado / rosa', note: 'Igual en masculino y femenino.' },
+        { emoji: '🟠', fr: 'orange', es: 'naranja / anaranjado', note: '¡Truco! "orange" es invariable (nunca lleva -s en plural).' },
+        { emoji: '🟣', fr: 'violet / violette', es: 'violeta / morado', note: '¡Ojo al femenino! Doble t: VIOLETTE.' },
+        { emoji: '🟤', fr: 'marron', es: 'marrón / café', note: '¡Truco! "marron" es invariable (ni cambia en femenino ni lleva -s).' }
+      ]
+    };
+
+    // Preguntas contextuales y de arrastrar palabras para enriquecer cada tema
+    const CONTEXTUAL_QUESTIONS = [
+      // Sesión 1: Presentación personal
+      {
+        topic: 's1_presentacion',
+        type: 'order',
+        prompt: 'Ordena las palabras para presentarte diciendo tu nombre y tu edad:',
+        esHint: 'Me llamo Sofía y tengo diez años.',
+        words: ['Je', "m'appelle", 'Sofia', 'et', "j'ai", 'dix', 'ans'],
+        distractors: ['suis', 'il'],
+        explanation: 'Para decir tu nombre usas "Je m\'appelle..." y para la edad en francés SIEMPRE usas el verbo avoir ("j\'ai ... ans", nunca "je suis").'
+      },
+      {
+        topic: 's1_presentacion',
+        type: 'order',
+        prompt: 'Ordena las palabras para presentar a un amigo (tercera persona):',
+        esHint: 'Él se llama Lucas y vive en París.',
+        words: ['Il', "s'appelle", 'Lucas', 'et', 'il', 'habite', 'à', 'Paris'],
+        distractors: ["m'appelle", 'suis'],
+        explanation: 'Para presentar a un chico usamos "Il s\'appelle..." y "il habite à..." (con tilde hacia la izquierda en la preposición à).'
+      },
+      {
+        topic: 's1_presentacion',
+        type: 'mc',
+        emoji: '🎂',
+        prompt: '¿Cómo dices correctamente en francés "Ella tiene 12 años"?',
+        options: ['Elle a douze ans', 'Elle est douze ans', 'Je a douze ans', "Elle s'appelle douze ans"],
+        answer: 'Elle a douze ans',
+        explanation: 'En francés los años "se tienen" con el verbo AVOIR: J\'ai, Tu as, Il a, Elle a douze ans.'
+      },
+      // Sesión 1: Verbos être, avoir, aimer, adorer, détester
+      {
+        topic: 's1_verbos',
+        type: 'mc',
+        emoji: '⚡',
+        prompt: 'Completa la frase con el verbo ÊTRE: "Nous _______ très contents aujourd\'hui."',
+        options: ['sommes', 'avons', 'êtes', 'sont'],
+        answer: 'sommes',
+        explanation: 'Con "Nous" (nosotros), el verbo être se conjuga "Nous sommes". ("Nous avons" es del verbo avoir).'
+      },
+      {
+        topic: 's1_verbos',
+        type: 'mc',
+        emoji: '🐶',
+        prompt: 'Completa la frase con el verbo AVOIR: "Mes amis (Ils) _______ un petit chien."',
+        options: ['ont', 'sont', 'avez', 'a'],
+        answer: 'ont',
+        explanation: 'Para "Ils / Elles", el verbo avoir es "ont" (tienen). ¡No lo confundas con "sont" (son/están)!'
+      },
+      // Sesión 1: Negación de aimer
+      {
+        topic: 's1_negacion_aimer',
+        type: 'order',
+        prompt: 'Arma la oración negativa con el verbo AIMER:',
+        esHint: 'A mí no me gusta el pescado.',
+        words: ['Je', "n'aime", 'pas', 'le', 'poisson'],
+        distractors: ['ne', 'de'],
+        explanation: 'Como "aime" empieza por vocal, "ne" pierde la "e" y lleva apóstrofe: Je n\'aime pas le poisson.'
+      },
+      {
+        topic: 's1_negacion_aimer',
+        type: 'order',
+        prompt: 'Arma la oración negativa en tercera persona con AIMER:',
+        esHint: 'A él no le gustan las tortugas.',
+        words: ['Il', "n'aime", 'pas', 'les', 'tortues'],
+        distractors: ['ne', 'pas de'],
+        explanation: 'El verbo conjugado va dentro del sándwich: Il + n\' + aime + pas + les tortues.'
+      },
+      {
+        topic: 's1_negacion_aimer',
+        type: 'mc',
+        emoji: '🚫',
+        prompt: '¿Cuál es la forma correcta de negar "Tu aimes le football"?',
+        options: ["Tu n'aimes pas le football", 'Tu ne aimes pas le football', "Tu n'aime pas le football", 'Tu pas aimes le football'],
+        answer: "Tu n'aimes pas le football",
+        explanation: '1) Antes de vocal "ne" se vuelve "n\'". 2) Con "Tu", el verbo aimer conserva su "-s" final (aimes).'
+      },
+      // Sesión 1: Números 0 al 100
+      {
+        topic: 's1_numeros',
+        type: 'mc',
+        emoji: '🧠',
+        prompt: '¿Cómo se escribe el número 70 en francés?',
+        options: ['soixante-dix', 'septante', 'quatre-vingts', 'soixante-sept'],
+        answer: 'soixante-dix',
+        explanation: 'En Francia el 70 se forma sumando 60 + 10 = soixante-dix.'
+      },
+      {
+        topic: 's1_numeros',
+        type: 'mc',
+        emoji: '🧠',
+        prompt: '¿Qué número es "quatre-vingt-douze"?',
+        options: ['92', '82', '72', '80'],
+        answer: '92',
+        explanation: 'Quatre-vingt (4 × 20 = 80) + douze (12) = 92.'
+      },
+      // Sesión 2: Descripción física
+      {
+        topic: 's2_descripcion',
+        type: 'order',
+        prompt: 'Ordena las palabras para describir físicamente a una niña:',
+        esHint: 'Ella es alta y tiene los ojos verdes.',
+        words: ['Elle', 'est', 'grande', 'et', 'elle', 'a', 'les', 'yeux', 'verts'],
+        distractors: ['grand', 'est les'],
+        explanation: 'Para la estatura usamos ÊTRE (Elle est grande) y para los ojos/cabello usamos AVOIR (elle a les yeux verts).'
+      },
+      {
+        topic: 's2_descripcion',
+        type: 'mc',
+        emoji: '💇‍♀️',
+        prompt: 'Completa la descripción: "Ma sœur _______ les cheveux longs et blonds."',
+        options: ['a', 'est', 'suis', 'ont'],
+        answer: 'a',
+        explanation: 'Con el cabello (les cheveux) y los ojos (les yeux) usamos el verbo AVOIR (tener): Ma sœur (Elle) a les cheveux longs.'
+      },
+      // Sesión 2: Verbos Faire y Aller
+      {
+        topic: 's2_verbos_faire_aller',
+        type: 'mc',
+        emoji: '🛠️',
+        prompt: '¡Pregunta clásica de examen! ¿Cómo se conjuga el verbo FAIRE con "Vous" (ustedes)?',
+        options: ['Vous faites', 'Vous faisez', 'Vous font', 'Vous faisons'],
+        answer: 'Vous faites',
+        explanation: '"Vous faites" es una forma irregular muy famosa del francés (termina en -tes, no en -ez).'
+      },
+      {
+        topic: 's2_verbos_faire_aller',
+        type: 'mc',
+        emoji: '🚶',
+        prompt: 'Completa con el verbo ALLER: "Demain, mes parents (Ils) _______ au restaurant."',
+        options: ['vont', 'font', 'allons', 'allez'],
+        answer: 'vont',
+        explanation: 'Con "Ils / Elles", el verbo ALLER (ir) es "vont" (ellos van), mientras que "font" es del verbo FAIRE (ellos hacen).'
+      },
+      {
+        topic: 's2_verbos_faire_aller',
+        type: 'order',
+        prompt: 'Ordena la frase con el verbo ALLER y un lugar de la ciudad:',
+        esHint: 'Nosotros vamos a la panadería.',
+        words: ['Nous', 'allons', 'à', 'la', 'boulangerie'],
+        distractors: ['au', 'faisons'],
+        explanation: 'Nous allons (vamos) + à la boulangerie (porque boulangerie es femenino).'
+      },
+      // Sesión 2: Negación general
+      {
+        topic: 's2_negacion_general',
+        type: 'order',
+        prompt: 'Convierte a negativa usando la regla del sándwich (ne ... pas):',
+        esHint: 'Nosotros no vamos al parque.',
+        words: ['Nous', 'ne', 'allons', 'pas', 'au', 'parc'].map(w => w), // Wait: allons starts with vowel! Let's use n'allons!
+        words: ['Nous', "n'allons", 'pas', 'au', 'parc'],
+        distractors: ['ne', 'allons'],
+        explanation: 'Como "allons" empieza por la vocal "a", "ne" se convierte en "n\'": Nous n\'allons pas au parc.'
+      },
+      {
+        topic: 's2_negacion_general',
+        type: 'order',
+        prompt: 'Ordena la oración negativa con el verbo FAIRE:',
+        esHint: 'Yo no hago deporte el lunes.',
+        words: ['Je', 'ne', 'fais', 'pas', 'de', 'sport'],
+        distractors: ["n'", 'faisons'],
+        explanation: 'Como "fais" empieza por consonante, usamos "ne" antes del verbo y "pas" después: Je ne fais pas...'
+      },
+      {
+        topic: 's2_negacion_general',
+        type: 'mc',
+        emoji: '🛑',
+        prompt: '¿Cómo se pone en negativo la frase "Elle va à la piscine"?',
+        options: ['Elle ne va pas à la piscine', "Elle n'va pas à la piscine", 'Elle ne pas va à la piscine', 'Elle va ne pas à la piscine'],
+        answer: 'Elle ne va pas à la piscine',
+        explanation: 'El verbo "va" empieza por consonante, así que queda envuelto entre "ne" y "pas": Elle ne va pas...'
+      }
+    ];
+
+    /* =========================================================================
+       2. ESTADO DE LA APLICACIÓN Y ALMACENAMIENTO LOCAL
+       ========================================================================= */
+    let vocabDB = {};
+    let selectedTopics = new Set(TOPICS_META.map(t => t.id));
+    let questionCount = 8;
+    let quizMode = 'mixed'; // mixed, visual, writing, connect
+    let activeStudyTopic = 's1_presentacion';
+
+    // Estado de la partida actual
+    let currentQuizQuestions = [];
+    let currentQIndex = 0;
+    let currentScore = 0;
+    let currentMistakes = [];
+    let questionAnswered = false;
+
+    // Estado temporal para interacciones de la pregunta actual
+    let currentSelectedMC = null;
+    let currentOrderedWords = [];
+    let currentBankWords = [];
+    let currentImageSlots = {}; // slotIndex -> word
+    let currentSelectedChipForImg = null;
+    let connectLeftSelected = null;
+    let connectMatchedCount = 0;
+    let connectMistakeMade = false;
+
+    // Estadísticas globales del estudiante
+    let userStats = {
+      stars: 0,
+      streak: 0,
+      rounds: 0
+    };
+
+    function loadAppData() {
+      try {
+        const savedVocab = localStorage.getItem('atelier_fr_vocab_v1');
+        if (savedVocab) {
+          vocabDB = JSON.parse(savedVocab);
+          // Asegurar que existan todas las llaves por si hubo actualización
+          for (const k in DEFAULT_VOCAB_DB) {
+            if (!vocabDB[k]) vocabDB[k] = JSON.parse(JSON.stringify(DEFAULT_VOCAB_DB[k]));
+          }
+        } else {
+          vocabDB = JSON.parse(JSON.stringify(DEFAULT_VOCAB_DB));
+        }
+
+        const savedStats = localStorage.getItem('atelier_fr_stats_v1');
+        if (savedStats) {
+          userStats = JSON.parse(savedStats);
+        }
+      } catch (e) {
+        vocabDB = JSON.parse(JSON.stringify(DEFAULT_VOCAB_DB));
+      }
+      updateStatsUI();
+    }
+
+    function saveVocabData() {
+      try {
+        localStorage.setItem('atelier_fr_vocab_v1', JSON.stringify(vocabDB));
+      } catch (e) {}
+    }
+
+    function saveStatsData() {
+      try {
+        localStorage.setItem('atelier_fr_stats_v1', JSON.stringify(userStats));
+      } catch (e) {}
+      updateStatsUI();
+    }
+
+    function updateStatsUI() {
+      document.getElementById('statStars').textContent = userStats.stars;
+      document.getElementById('statStreak').textContent = userStats.streak;
+      document.getElementById('statRounds').textContent = userStats.rounds;
+    }
+
+    /* =========================================================================
+       3. SÍNTESIS DE VOZ FRANCESA (OFFLINE DEL NAVEGADOR)
+       ========================================================================= */
+    function speakFrench(text, evt) {
+      if (evt) evt.stopPropagation();
+      if (!('speechSynthesis' in window)) return;
+      try {
+        window.speechSynthesis.cancel();
+        // Limpiar barras como "Il est / Elle est" para que lea natural
+        const cleanText = text.replace(/\s*\/\s*/g, ', ');
+        const utter = new SpeechSynthesisUtterance(cleanText);
+        utter.lang = 'fr-FR';
+        utter.rate = 0.88; // Un poco más pausado para que el niño entienda claro
+        const voices = window.speechSynthesis.getVoices();
+        const frVoice = voices.find(v => v.lang && v.lang.toLowerCase().startsWith('fr'));
+        if (frVoice) utter.voice = frVoice;
+        window.speechSynthesis.speak(utter);
+      } catch (e) {}
+    }
+
+    /* =========================================================================
+       4. NAVEGACIÓN Y CONFIGURACIÓN DE TEMAS
+       ========================================================================= */
+    function switchMainView(viewName) {
+      document.querySelectorAll('.view-section').forEach(s => s.classList.remove('active'));
+      document.querySelectorAll('.nav-tab').forEach(b => b.classList.remove('active'));
+
+      if (viewName === 'play') {
+        document.getElementById('viewPlay').classList.add('active');
+        document.getElementById('tabBtnPlay').classList.add('active');
+      } else if (viewName === 'study') {
+        document.getElementById('viewStudy').classList.add('active');
+        document.getElementById('tabBtnStudy').classList.add('active');
+        renderStudySidebar();
+        renderStudyTopicContent(activeStudyTopic);
+      } else if (viewName === 'custom') {
+        document.getElementById('viewCustom').classList.add('active');
+        document.getElementById('tabBtnCustom').classList.add('active');
+        renderCustomEditorList();
+      }
+    }
+
+    function renderTopicsGrid() {
+      const grid = document.getElementById('topicsGrid');
+      grid.innerHTML = '';
+
+      TOPICS_META.forEach(t => {
+        const isSelected = selectedTopics.has(t.id);
+        const card = document.createElement('div');
+        card.className = `topic-card ${isSelected ? 'selected' : ''}`;
+        card.onclick = () => toggleTopicSelection(t.id);
+
+        card.innerHTML = `
+          <div class="topic-card-top">
+            <div class="topic-icon">${t.icon}</div>
+            <span class="topic-badge ${t.session === 's1' ? 'badge-s1' : 'badge-s2'}">${t.badge}</span>
+            <div class="check-indicator">✔</div>
+          </div>
+          <div class="topic-title">${t.title}</div>
+          <div class="topic-desc">${t.desc}</div>
+          <div class="topic-actions-mini">
+            <button class="mini-btn" onclick="openTopicStudyDirect('${t.id}', event)">📘 Ver Guía</button>
+            <button class="mini-btn" onclick="playSingleTopicNow('${t.id}', event)">▶️ Jugar solo este</button>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+
+      const count = selectedTopics.size;
+      document.getElementById('selectionSummaryText').textContent =
+        `Temas seleccionados: ${count} de ${TOPICS_META.length}`;
+    }
+
+    function toggleTopicSelection(topicId) {
+      if (selectedTopics.has(topicId)) {
+        if (selectedTopics.size > 1) {
+          selectedTopics.delete(topicId);
+        }
+      } else {
+        selectedTopics.add(topicId);
+      }
+      document.querySelectorAll('.session-btn').forEach(b => b.classList.remove('active'));
+      renderTopicsGrid();
+    }
+
+    function selectPresetTopics(preset) {
+      selectedTopics.clear();
+      document.querySelectorAll('.session-btn').forEach(b => b.classList.remove('active'));
+
+      if (preset === 's1') {
+        TOPICS_META.filter(t => t.session === 's1').forEach(t => selectedTopics.add(t.id));
+        document.getElementById('presetS1').classList.add('active');
+      } else if (preset === 's2') {
+        TOPICS_META.filter(t => t.session === 's2').forEach(t => selectedTopics.add(t.id));
+        document.getElementById('presetS2').classList.add('active');
+      } else {
+        TOPICS_META.forEach(t => selectedTopics.add(t.id));
+        document.getElementById('presetAll').classList.add('active');
+      }
+      renderTopicsGrid();
+    }
+
+    function playSingleTopicNow(topicId, evt) {
+      if (evt) evt.stopPropagation();
+      selectedTopics.clear();
+      selectedTopics.add(topicId);
+      renderTopicsGrid();
+      startQuizRound();
+    }
+
+    function openTopicStudyDirect(topicId, evt) {
+      if (evt) evt.stopPropagation();
+      activeStudyTopic = topicId;
+      switchMainView('study');
+    }
+
+    function openStudyForSelected() {
+      const firstSelected = Array.from(selectedTopics)[0] || 's1_presentacion';
+      activeStudyTopic = firstSelected;
+      switchMainView('study');
+    }
+
+    function setQuestionCount(cnt) {
+      questionCount = cnt;
+      document.querySelectorAll('#countPillGroup .pill-option').forEach(btn => {
+        btn.classList.toggle('active', Number(btn.dataset.count) === cnt);
+      });
+    }
+
+    function setQuizMode(mode) {
+      quizMode = mode;
+      document.querySelectorAll('#modePillGroup .pill-option').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.mode === mode);
+      });
+    }
+
+    /* =========================================================================
+       5. GENERADOR DINÁMICO DE PREGUNTAS INTERACTIVAS
+       ========================================================================= */
+    function shuffleArray(arr) {
+      const copy = [...arr];
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+
+    function getTopicMeta(topicId) {
+      return TOPICS_META.find(t => t.id === topicId) || TOPICS_META[0];
+    }
+
+    function buildQuestionPool() {
+      const activeIds = Array.from(selectedTopics);
+      const pool = [];
+
+      // Recolectar todos los ítems de los temas elegidos
+      let allVocabItems = [];
+      activeIds.forEach(tid => {
+        const items = vocabDB[tid] || [];
+        items.forEach(item => {
+          allVocabItems.push({ ...item, topicId: tid });
+        });
+      });
+
+      // 1. Preguntas de IMAGEN -> ESCRIBIR O ELEGIR PALABRA EN FRANCÉS
+      allVocabItems.forEach(item => {
+        const sameTopicItems = (vocabDB[item.topicId] || []).filter(x => x.fr !== item.fr);
+        const distractorPool = sameTopicItems.length >= 3 ? sameTopicItems : allVocabItems.filter(x => x.fr !== item.fr);
+        const distractors = shuffleArray(distractorPool).slice(0, 3).map(x => x.fr);
+
+        // Tipo A: Imagen -> Selección múltiple en francés
+        if (quizMode === 'mixed' || quizMode === 'visual' || quizMode === 'connect') {
+          pool.push({
+            qType: 'img_to_fr_mc',
+            typeLabel: '🖼️ Imagen a Francés (Selección)',
+            topicId: item.topicId,
+            emoji: item.emoji,
+            esText: item.es,
+            frText: item.fr,
+            prompt: `Observa la tarjeta visual ("${item.es}"). ¿Cómo se dice en francés?`,
+            options: shuffleArray([item.fr, ...distractors]),
+            answer: item.fr,
+            explanation: `"${item.es}" en francés es "${item.fr}". ${item.note || ''}`
+          });
+        }
+
+        // Tipo B: Imagen + Español -> Escribir en Francés
+        if (quizMode === 'mixed' || quizMode === 'writing' || quizMode === 'visual') {
+          // Preferir frases o palabras limpias (sin barras "/") para escritura directa
+          if (!item.fr.includes('/')) {
+            pool.push({
+              qType: 'es_to_fr_write',
+              typeLabel: '🇪🇸➡️🇫🇷 Escribe en Francés',
+              topicId: item.topicId,
+              emoji: item.emoji,
+              esText: item.es,
+              frText: item.fr,
+              prompt: `Escribe en francés la palabra o expresión que describe la imagen:`,
+              answer: item.fr,
+              hint: `Empieza por "${item.fr.slice(0, 2)}..." (${item.fr.length} letras)`,
+              explanation: `En francés se escribe "${item.fr}". ${item.note || ''}`
+            });
+          }
+        }
+
+        // Tipo C: Francés -> Escribir o elegir traducción en Español
+        if (quizMode === 'mixed' || quizMode === 'writing') {
+          const esDistractors = shuffleArray(distractorPool).slice(0, 3).map(x => x.es);
+          pool.push({
+            qType: 'fr_to_es_write',
+            typeLabel: '🇫🇷➡️🇪🇸 Traduce al Español',
+            topicId: item.topicId,
+            emoji: item.emoji,
+            frText: item.fr,
+            esText: item.es,
+            prompt: `¿Qué significa en español la expresión francesa "${item.fr}"?`,
+            options: shuffleArray([item.es, ...esDistractors]),
+            answer: item.es,
+            explanation: `"${item.fr}" significa "${item.es}". ${item.note || ''}`
+          });
+        }
+      });
+
+      // 2. Preguntas de ARRASTRAR ETIQUETAS A IMÁGENES (3 imágenes por reto)
+      activeIds.forEach(tid => {
+        const items = vocabDB[tid] || [];
+        if (items.length >= 3 && (quizMode === 'mixed' || quizMode === 'visual')) {
+          const shuffled = shuffleArray(items);
+          for (let i = 0; i + 2 < shuffled.length; i += 3) {
+            const trio = shuffled.slice(i, i + 3);
+            pool.push({
+              qType: 'drag_images',
+              typeLabel: '🧩 Arrastrar a cada Imagen',
+              topicId: tid,
+              prompt: 'Toca o arrastra cada palabra en francés hacia la imagen que le corresponde:',
+              cards: trio.map(x => ({ emoji: x.emoji, es: x.es, fr: x.fr })),
+              bank: shuffleArray(trio.map(x => x.fr)),
+              explanation: trio.map(x => `${x.emoji} ${x.fr} = ${x.es}`).join(' · ')
+            });
+          }
+        }
+      });
+
+      // 3. Preguntas de CONECTAR IDEAS (4 pares Francés <-> Español)
+      activeIds.forEach(tid => {
+        const items = vocabDB[tid] || [];
+        if (items.length >= 4 && (quizMode === 'mixed' || quizMode === 'connect')) {
+          const quartet = shuffleArray(items).slice(0, 4);
+          pool.push({
+            qType: 'connect_pairs',
+            typeLabel: '🔗 Conectar Ideas ( Francés ↔ Español )',
+            topicId: tid,
+            prompt: 'Conecta cada expresión en francés de la izquierda con su significado en español a la derecha:',
+            pairs: quartet.map((x, idx) => ({
+              id: idx,
+              left: `${x.emoji} ${x.fr}`,
+              leftSpeak: x.fr,
+              right: x.es
+            })),
+            explanation: quartet.map(x => `${x.fr} → ${x.es}`).join(' | ')
+          });
+        }
+      });
+
+      // 4. Preguntas Contextuales y de Armar Oraciones (Arrastrar palabras)
+      CONTEXTUAL_QUESTIONS.forEach(cq => {
+        if (selectedTopics.has(cq.topic)) {
+          if (cq.type === 'order' && (quizMode === 'mixed' || quizMode === 'visual' || quizMode === 'writing')) {
+            pool.push({
+              qType: 'order_sentence',
+              typeLabel: '🧱 Armar la Oración en Francés',
+              topicId: cq.topic,
+              prompt: cq.prompt,
+              esHint: cq.esHint,
+              correctWords: cq.words,
+              allWords: shuffleArray([...cq.words, ...(cq.distractors || [])]),
+              answer: cq.words.join(' '),
+              explanation: cq.explanation
+            });
+          } else if (cq.type === 'mc' && (quizMode === 'mixed' || quizMode === 'connect')) {
+            pool.push({
+              qType: 'context_mc',
+              typeLabel: '✅ Gramática en Contexto',
+              topicId: cq.topic,
+              emoji: cq.emoji || '💡',
+              prompt: cq.prompt,
+              options: shuffleArray(cq.options),
+              answer: cq.answer,
+              explanation: cq.explanation
+            });
+          }
+        }
+      });
+
+      // Mezclar y balancear tipos de preguntas para que haya máxima variedad
+      const shuffledPool = shuffleArray(pool);
+      const selected = [];
+      const typeCounts = {};
+
+      for (const q of shuffledPool) {
+        if (selected.length >= questionCount) break;
+        const countForType = typeCounts[q.qType] || 0;
+        const maxPerType = Math.ceil(questionCount / 3) + 1;
+        if (countForType < maxPerType) {
+          selected.push(q);
+          typeCounts[q.qType] = countForType + 1;
+        }
+      }
+
+      // Si faltan preguntas para llegar a questionCount, rellenar del resto
+      for (const q of shuffledPool) {
+        if (selected.length >= questionCount) break;
+        if (!selected.includes(q)) selected.push(q);
+      }
+
+      return selected;
+    }
+
+    function startQuizRound(customQuestions = null) {
+      currentQuizQuestions = customQuestions || buildQuestionPool();
+      if (currentQuizQuestions.length === 0) {
+        alert('Selecciona al menos un tema con vocabulario para comenzar.');
+        return;
+      }
+      currentQIndex = 0;
+      currentScore = 0;
+      currentMistakes = [];
+
+      document.getElementById('setupPanel').style.display = 'none';
+      document.getElementById('quizResultsPanel').style.display = 'none';
+      document.getElementById('quizActivePanel').style.display = 'block';
+
+      renderCurrentQuestion();
+    }
+
+    function exitQuizToSetup() {
+      document.getElementById('quizActivePanel').style.display = 'none';
+      document.getElementById('quizResultsPanel').style.display = 'none';
+      document.getElementById('setupPanel').style.display = 'block';
+    }
+
+    /* =========================================================================
+       6. RENDERIZADO DE CADA TIPO DE PREGUNTA INTERACTIVA
+       ========================================================================= */
+    function renderCurrentQuestion() {
+      questionAnswered = false;
+      currentSelectedMC = null;
+      const q = currentQuizQuestions[currentQIndex];
+      const total = currentQuizQuestions.length;
+      const meta = getTopicMeta(q.topicId);
+
+      document.getElementById('qCounterText').textContent = `Pregunta ${currentQIndex + 1} de ${total}`;
+      document.getElementById('qScoreLiveText').textContent = `Aciertos: ${currentScore}`;
+      document.getElementById('qProgressBar').style.width = `${((currentQIndex) / total) * 100}%`;
+
+      const fb = document.getElementById('feedbackContainer');
+      fb.className = 'feedback-box';
+      fb.innerHTML = '';
+
+      const btnCheck = document.getElementById('btnCheckAnswer');
+      const btnNext = document.getElementById('btnNextQuestion');
+      btnCheck.style.display = 'inline-flex';
+      btnNext.style.display = 'none';
+
+      const container = document.getElementById('questionContainer');
+      let html = `
+        <div>
+          <span class="q-type-chip">${q.typeLabel}</span>
+          <span class="q-topic-chip">${meta.icon} ${meta.title}</span>
+        </div>
+        <div class="question-prompt">${q.prompt}</div>
+      `;
+
+      // 1. IMAGEN A FRANCÉS (SELECCIÓN MÚLTIPLE) O GRAMÁTICA MC
+      if (q.qType === 'img_to_fr_mc' || q.qType === 'context_mc') {
+        html += `
+          <div class="visual-stage">
+            <div class="visual-emoji-big">${q.emoji || '🇫🇷'}</div>
+            ${q.esText ? `<div class="visual-caption">🇪🇸 ${q.esText}</div>` : ''}
+          </div>
+          <div class="mc-options-grid">
+            ${q.options.map((opt, idx) => `
+              <button class="mc-option-btn" onclick="selectMCOption(${idx})" id="mcOpt_${idx}">
+                <span class="mc-letter">${String.fromCharCode(65 + idx)}</span>
+                <span style="flex:1;">${opt}</span>
+                <span class="speak-btn" onclick="speakFrench('${opt.replace(/'/g, "\\'")}', event)" title="Escuchar pronunciación">🔊</span>
+              </button>
+            `).join('')}
+          </div>
+        `;
+      }
+
+      // 2. TRADUCIR DEL ESPAÑOL AL FRANCÉS (ESCRITURA CON TECLADO DE ACENTOS)
+      else if (q.qType === 'es_to_fr_write') {
+        const accents = ['é', 'è', 'ê', 'ë', 'à', 'ù', 'ç', 'œ', "'"];
+        html += `
+          <div class="visual-stage">
+            <div class="visual-emoji-big">${q.emoji || '✍️'}</div>
+            <div class="visual-caption">🇪🇸 "${q.esText}"</div>
+            <div style="font-size:0.82rem; color:var(--text-muted);">💡 Pista: ${q.hint}</div>
+          </div>
+          <div class="type-answer-wrap">
+            <div class="answer-input-row">
+              <input type="text" id="writeAnswerInput" class="answer-input" placeholder="Escribe aquí en francés..." autocomplete="off" onkeydown="if(event.key==='Enter') handleEnterKey()" />
+              <button class="speak-btn" style="width:48px; height:48px; border-radius:12px;" onclick="speakFrench('${q.answer.replace(/'/g, "\\'")}', event)" title="Escuchar pista en francés">🔊</button>
+            </div>
+            <div class="accents-bar">
+              <span class="accents-label">Teclas francesas:</span>
+              ${accents.map(ch => `<button type="button" class="accent-key" onclick="insertAccentChar('${ch === "'" ? "\\'" : ch}')">${ch}</button>`).join('')}
+            </div>
+          </div>
+        `;
+      }
+
+      // 3. TRADUCIR DEL FRANCÉS AL ESPAÑOL (MODO HÍBRIDO: ESCRIBIR O SELECCIONAR)
+      else if (q.qType === 'fr_to_es_write') {
+        html += `
+          <div class="visual-stage">
+            <div class="visual-emoji-big">${q.emoji || '🇫🇷'}</div>
+            <div class="visual-caption">
+              🇫🇷 ${q.frText}
+              <button class="speak-btn" onclick="speakFrench('${q.frText.replace(/'/g, "\\'")}', event)" title="Escuchar en francés">🔊</button>
+            </div>
+          </div>
+          <div class="type-answer-wrap">
+            <div class="answer-input-row">
+              <input type="text" id="writeEsInput" class="answer-input" placeholder="Escribe la traducción en español o elige abajo..." autocomplete="off" onkeydown="if(event.key==='Enter') handleEnterKey()" />
+            </div>
+          </div>
+          <div style="font-size:0.82rem; font-weight:700; color:var(--text-muted); margin-bottom:8px;">O selecciona directamente el significado en español:</div>
+          <div class="mc-options-grid">
+            ${q.options.map((opt, idx) => `
+              <button class="mc-option-btn" onclick="selectEsOption(${idx}, '${opt.replace(/'/g, "\\'")}')" id="mcOpt_${idx}">
+                <span class="mc-letter">${String.fromCharCode(65 + idx)}</span>
+                <span>${opt}</span>
+              </button>
+            `).join('')}
+          </div>
+        `;
+      }
+
+      // 4. ARRASTRAR / ORDENAR PALABRAS PARA ARMAR ORACIÓN EN FRANCÉS
+      else if (q.qType === 'order_sentence') {
+        currentOrderedWords = [];
+        currentBankWords = q.allWords.map((w, i) => ({ id: i, text: w, used: false }));
+        html += `
+          <div class="visual-stage" style="padding:14px;">
+            <div class="visual-caption">🇪🇸 Frase objetivo: "${q.esHint}"</div>
+          </div>
+          <div class="dd-zone-label">👇 Tu oración en francés (toca una palabra puesta para quitarla):</div>
+          <div class="sentence-slots" id="sentenceSlotsArea"></div>
+          <div class="dd-zone-label">📦 Banco de palabras (toca las palabras en orden):</div>
+          <div class="word-bank" id="wordBankArea"></div>
+        `;
+      }
+
+      // 5. ARRASTRAR ETIQUETAS FRANCESAS A SUS IMÁGENES
+      else if (q.qType === 'drag_images') {
+        currentImageSlots = {};
+        currentSelectedChipForImg = null;
+        html += `
+          <div class="dd-zone-label">1️⃣ Toca o arrastra una etiqueta francesa del banco azul y colócala bajo su dibujo:</div>
+          <div class="word-bank" id="imgWordBankArea"></div>
+          <div class="image-match-grid" id="imgMatchGridArea"></div>
+        `;
+      }
+
+      // 6. CONECTAR IDEAS (EMPAREJAR COLUMNAS)
+      else if (q.qType === 'connect_pairs') {
+        connectLeftSelected = null;
+        connectMatchedCount = 0;
+        connectMistakeMade = false;
+        btnCheck.style.display = 'none'; // Se valida automáticamente al conectar las 4 parejas
+        const leftItems = shuffleArray(q.pairs.map(p => ({ id: p.id, text: p.left, speak: p.leftSpeak })));
+        const rightItems = shuffleArray(q.pairs.map(p => ({ id: p.id, text: p.right })));
+
+        html += `
+          <div class="connect-columns">
+            <div class="connect-col">
+              <div class="connect-col-title">🇫🇷 Francés (Toca primero)</div>
+              ${leftItems.map(item => `
+                <div class="connect-item" id="connL_${item.id}" onclick="handleConnectLeft(${item.id}, '${item.speak.replace(/'/g, "\\'")}')">
+                  <span>${item.text}</span>
+                  <button class="speak-btn" onclick="speakFrench('${item.speak.replace(/'/g, "\\'")}', event)">🔊</button>
+                </div>
+              `).join('')}
+            </div>
+            <div class="connect-col">
+              <div class="connect-col-title">🇪🇸 Español (Conecta su pareja)</div>
+              ${rightItems.map(item => `
+                <div class="connect-item" id="connR_${item.id}" onclick="handleConnectRight(${item.id})">
+                  <span>${item.text}</span>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        `;
+      }
+
+      container.innerHTML = html;
+
+      if (q.qType === 'order_sentence') {
+        renderOrderSentenceUI();
+      } else if (q.qType === 'drag_images') {
+        renderDragImagesUI();
+      } else if (q.qType === 'es_to_fr_write') {
+        setTimeout(() => {
+          const inp = document.getElementById('writeAnswerInput');
+          if (inp) inp.focus();
+        }, 60);
+      }
+    }
+
+    function handleEnterKey() {
+      if (!questionAnswered) {
+        checkCurrentAnswer();
+      } else {
+        nextQuestion();
+      }
+    }
+
+    // Interacción Selección Múltiple
+    function selectMCOption(idx) {
+      if (questionAnswered) return;
+      currentSelectedMC = idx;
+      document.querySelectorAll('.mc-option-btn').forEach((btn, i) => {
+        btn.classList.toggle('selected', i === idx);
+      });
+    }
+
+    function selectEsOption(idx, textVal) {
+      if (questionAnswered) return;
+      currentSelectedMC = idx;
+      const inp = document.getElementById('writeEsInput');
+      if (inp) inp.value = textVal;
+      document.querySelectorAll('.mc-option-btn').forEach((btn, i) => {
+        btn.classList.toggle('selected', i === idx);
+      });
+    }
+
+    function insertAccentChar(ch) {
+      const inp = document.getElementById('writeAnswerInput');
+      if (!inp || questionAnswered) return;
+      const start = inp.selectionStart || inp.value.length;
+      const end = inp.selectionEnd || inp.value.length;
+      inp.value = inp.value.substring(0, start) + ch + inp.value.substring(end);
+      inp.focus();
+      inp.setSelectionRange(start + ch.length, start + ch.length);
+    }
+
+    // Interacción Ordenar Oración
+    function renderOrderSentenceUI() {
+      const slotsEl = document.getElementById('sentenceSlotsArea');
+      const bankEl = document.getElementById('wordBankArea');
+      if (!slotsEl || !bankEl) return;
+
+      if (currentOrderedWords.length === 0) {
+        slotsEl.innerHTML = `<span style="color:#94a3b8; font-size:0.9rem; font-weight:600;">Toca las palabras de abajo en el orden correcto...</span>`;
+      } else {
+        slotsEl.innerHTML = currentOrderedWords.map((item, pos) => `
+          <div class="word-chip in-slot" onclick="removeWordFromSentence(${pos})">${item.text} ✖</div>
+        `).join('');
+      }
+
+      bankEl.innerHTML = currentBankWords.map(item => {
+        if (item.used) return '';
+        return `<div class="word-chip" onclick="addWordToSentence(${item.id})">${item.text}</div>`;
+      }).join('');
+    }
+
+    function addWordToSentence(wordId) {
+      if (questionAnswered) return;
+      const wObj = currentBankWords.find(x => x.id === wordId);
+      if (!wObj || wObj.used) return;
+      wObj.used = true;
+      currentOrderedWords.push(wObj);
+      speakFrench(wObj.text);
+      renderOrderSentenceUI();
+    }
+
+    function removeWordFromSentence(pos) {
+      if (questionAnswered) return;
+      const removed = currentOrderedWords.splice(pos, 1)[0];
+      if (removed) removed.used = false;
+      renderOrderSentenceUI();
+    }
+
+    // Interacción Arrastrar Imágenes
+    function renderDragImagesUI() {
+      const q = currentQuizQuestions[currentQIndex];
+      const bankEl = document.getElementById('imgWordBankArea');
+      const gridEl = document.getElementById('imgMatchGridArea');
+      if (!bankEl || !gridEl) return;
+
+      const usedWords = Object.values(currentImageSlots);
+
+      bankEl.innerHTML = q.bank.map(word => {
+        const isUsed = usedWords.includes(word);
+        if (isUsed) return '';
+        const isSel = currentSelectedChipForImg === word;
+        return `
+          <div class="word-chip ${isSel ? 'in-slot' : ''}"
+               draggable="true"
+               ondragstart="onDragStartWord(event, '${word.replace(/'/g, "\\'")}')"
+               onclick="selectWordForImage('${word.replace(/'/g, "\\'")}')">
+            ${word} 🔊
+          </div>
+        `;
+      }).join('');
+
+      gridEl.innerHTML = q.cards.map((card, idx) => {
+        const placed = currentImageSlots[idx] || '';
+        return `
+          <div class="img-drop-card ${currentSelectedChipForImg ? 'active-target' : ''}"
+               ondragover="event.preventDefault()"
+               ondrop="onDropWordOnCard(event, ${idx})"
+               onclick="placeSelectedWordOnCard(${idx})">
+            <div class="img-drop-emoji">${card.emoji}</div>
+            <div class="img-drop-hint">${card.es}</div>
+            <div class="img-drop-slot ${placed ? 'filled' : ''}">
+              ${placed ? `${placed} ✖` : 'Coloca aquí'}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function selectWordForImage(word) {
+      if (questionAnswered) return;
+      speakFrench(word);
+      currentSelectedChipForImg = (currentSelectedChipForImg === word) ? null : word;
+      renderDragImagesUI();
+    }
+
+    function placeSelectedWordOnCard(cardIdx) {
+      if (questionAnswered) return;
+      if (currentSelectedChipForImg) {
+        currentImageSlots[cardIdx] = currentSelectedChipForImg;
+        currentSelectedChipForImg = null;
+      } else if (currentImageSlots[cardIdx]) {
+        delete currentImageSlots[cardIdx];
+      }
+      renderDragImagesUI();
+    }
+
+    function onDragStartWord(evt, word) {
+      currentSelectedChipForImg = word;
+      evt.dataTransfer.setData('text/plain', word);
+    }
+
+    function onDropWordOnCard(evt, cardIdx) {
+      evt.preventDefault();
+      if (questionAnswered) return;
+      const word = evt.dataTransfer.getData('text/plain') || currentSelectedChipForImg;
+      if (word) {
+        currentImageSlots[cardIdx] = word;
+        currentSelectedChipForImg = null;
+        renderDragImagesUI();
+      }
+    }
+
+    // Interacción Conectar Parejas
+    function handleConnectLeft(pairId, speakText) {
+      if (questionAnswered) return;
+      const el = document.getElementById(`connL_${pairId}`);
+      if (!el || el.classList.contains('matched')) return;
+      speakFrench(speakText);
+
+      document.querySelectorAll('[id^="connL_"]').forEach(x => x.classList.remove('selected'));
+      el.classList.add('selected');
+      connectLeftSelected = pairId;
+    }
+
+    function handleConnectRight(pairId) {
+      if (questionAnswered || connectLeftSelected === null) return;
+      const rightEl = document.getElementById(`connR_${pairId}`);
+      const leftEl = document.getElementById(`connL_${connectLeftSelected}`);
+      if (!rightEl || rightEl.classList.contains('matched')) return;
+
+      const q = currentQuizQuestions[currentQIndex];
+
+      if (connectLeftSelected === pairId) {
+        leftEl.classList.remove('selected');
+        leftEl.classList.add('matched');
+        rightEl.classList.add('matched');
+        connectLeftSelected = null;
+        connectMatchedCount++;
+
+        if (connectMatchedCount === q.pairs.length) {
+          finishQuestionEvaluation(!connectMistakeMade, 'Todas las parejas conectadas', q.explanation);
+        }
+      } else {
+        connectMistakeMade = true;
+        rightEl.classList.add('wrong-flash');
+        setTimeout(() => rightEl.classList.remove('wrong-flash'), 400);
+      }
+    }
+
+    /* =========================================================================
+       7. VALIDACIÓN Y EXPLICACIÓN PEDAGÓGICA DE RESPUESTAS
+       ========================================================================= */
+    function normalizeText(str) {
+      return (str || '')
+        .toLowerCase()
+        .trim()
+        .replace(/[’‘]/g, "'")
+        .replace(/\s+/g, ' ')
+        .replace(/[.!?]+$/g, '');
+    }
+
+    function stripAccents(str) {
+      return normalizeText(str).normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    }
+
+    function checkCurrentAnswer() {
+      if (questionAnswered) return;
+      const q = currentQuizQuestions[currentQIndex];
+
+      // 1. MC
+      if (q.qType === 'img_to_fr_mc' || q.qType === 'context_mc') {
+        if (currentSelectedMC === null) {
+          alert('Selecciona una opción antes de comprobar.');
+          return;
+        }
+        const chosen = q.options[currentSelectedMC];
+        const isCorrect = (chosen === q.answer);
+
+        document.querySelectorAll('.mc-option-btn').forEach((btn, idx) => {
+          btn.disabled = true;
+          if (q.options[idx] === q.answer) btn.classList.add('correct');
+          else if (idx === currentSelectedMC && !isCorrect) btn.classList.add('wrong');
+        });
+
+        speakFrench(q.answer);
+        finishQuestionEvaluation(isCorrect, chosen, q.explanation);
+      }
+
+      // 2. Escritura en Francés
+      else if (q.qType === 'es_to_fr_write') {
+        const inp = document.getElementById('writeAnswerInput');
+        const userVal = inp ? inp.value.trim() : '';
+        if (!userVal) {
+          alert('Escribe tu respuesta en francés.');
+          return;
+        }
+        const normUser = normalizeText(userVal);
+        const normAns = normalizeText(q.answer);
+        // También aceptar sin artículo si escribió el sustantivo exacto o con tilde ligeramente distinta
+        const normAnsNoArt = normAns.replace(/^(le |la |l'|les |un |une )/, '');
+        const isExact = (normUser === normAns || normUser === normAnsNoArt);
+        const isAlmost = (!isExact && (stripAccents(normUser) === stripAccents(normAns) || stripAccents(normUser) === stripAccents(normAnsNoArt)));
+
+        const isCorrect = isExact || isAlmost;
+        let extraNote = isAlmost ? ` (¡Casi perfecto! Recuerda los acentos exactos: <strong>${q.answer}</strong>). ` : '';
+        speakFrench(q.answer);
+        finishQuestionEvaluation(isCorrect, userVal, extraNote + q.explanation);
+      }
+
+      // 3. Traducción Francés -> Español
+      else if (q.qType === 'fr_to_es_write') {
+        const inp = document.getElementById('writeEsInput');
+        const userVal = inp ? inp.value.trim() : '';
+        if (!userVal) {
+          alert('Escribe o selecciona la traducción en español.');
+          return;
+        }
+        const normUser = stripAccents(userVal);
+        // Puede que la traducción tenga varias opciones separadas por "/"
+        const validParts = q.answer.split('/').map(p => stripAccents(p.replace(/\(.*\)/g, '')));
+        const isCorrect = (stripAccents(q.answer) === normUser) ||
+          validParts.some(vp => vp && (normUser === vp || (normUser.length >= 4 && vp.includes(normUser))));
+
+        finishQuestionEvaluation(isCorrect, userVal, q.explanation);
+      }
+
+      // 4. Ordenar Oración
+      else if (q.qType === 'order_sentence') {
+        if (currentOrderedWords.length === 0) {
+          alert('Toca las palabras del banco para armar la oración.');
+          return;
+        }
+        const userSentence = currentOrderedWords.map(w => w.text).join(' ');
+        const isCorrect = normalizeText(userSentence) === normalizeText(q.answer);
+        speakFrench(q.answer);
+        finishQuestionEvaluation(isCorrect, userSentence, q.explanation);
+      }
+
+      // 5. Arrastrar a Imágenes
+      else if (q.qType === 'drag_images') {
+        const placedCount = Object.keys(currentImageSlots).length;
+        if (placedCount < q.cards.length) {
+          alert('Coloca una etiqueta en cada una de las 3 imágenes antes de comprobar.');
+          return;
+        }
+        let allOk = true;
+        const userSummary = [];
+        q.cards.forEach((c, idx) => {
+          const placed = currentImageSlots[idx];
+          userSummary.push(`${c.emoji} ${placed}`);
+          if (placed !== c.fr) allOk = false;
+        });
+        finishQuestionEvaluation(allOk, userSummary.join(', '), q.explanation);
+      }
+    }
+
+    function finishQuestionEvaluation(isCorrect, userResponseText, explanationText) {
+      questionAnswered = true;
+      const q = currentQuizQuestions[currentQIndex];
+
+      if (isCorrect) {
+        currentScore++;
+        userStats.stars += 10;
+        userStats.streak += 1;
+      } else {
+        userStats.streak = 0;
+        currentMistakes.push({
+          question: q,
+          userAnswer: userResponseText
+        });
+      }
+      saveStatsData();
+
+      document.getElementById('qScoreLiveText').textContent = `Aciertos: ${currentScore}`;
+
+      const fb = document.getElementById('feedbackContainer');
+      fb.className = `feedback-box ${isCorrect ? 'correct' : 'wrong'}`;
+      fb.innerHTML = `
+        <div class="feedback-title">
+          ${isCorrect ? '🎉 ¡Très bien! Respuesta Correcta (+10 ⭐)' : '💡 ¡Casi! Revisemos la respuesta correcta:'}
+        </div>
+        ${!isCorrect && q.answer ? `<div style="font-weight:800; margin-top:4px;">Respuesta correcta: <span style="text-decoration:underline;">${q.answer}</span></div>` : ''}
+        <div class="feedback-explanation">
+          📘 <strong>Explicación:</strong> ${explanationText}
+        </div>
+      `;
+
+      document.getElementById('btnCheckAnswer').style.display = 'none';
+      const btnNext = document.getElementById('btnNextQuestion');
+      btnNext.style.display = 'inline-flex';
+      btnNext.textContent = (currentQIndex + 1 < currentQuizQuestions.length)
+        ? 'Siguiente Pregunta ➡️'
+        : '🏁 Ver Resultados de la Ronda';
+    }
+
+    function nextQuestion() {
+      currentQIndex++;
+      if (currentQIndex < currentQuizQuestions.length) {
+        renderCurrentQuestion();
+      } else {
+        showQuizResults();
+      }
+    }
+
+    function showQuizResults() {
+      userStats.rounds += 1;
+      saveStatsData();
+
+      document.getElementById('quizActivePanel').style.display = 'none';
+      document.getElementById('quizResultsPanel').style.display = 'block';
+
+      const total = currentQuizQuestions.length;
+      const pct = Math.round((currentScore / total) * 100);
+
+      document.getElementById('resScoreBig').textContent = `${currentScore} / ${total} (${pct}%)`;
+
+      const trophyEl = document.getElementById('resTrophy');
+      const titleEl = document.getElementById('resTitle');
+      const subEl = document.getElementById('resSubtitle');
+
+      if (pct === 100) {
+        trophyEl.textContent = '👑';
+        titleEl.textContent = '¡Félicitations! ¡Puntaje Perfecto!';
+        subEl.textContent = 'Dominaste todas las preguntas de esta ronda.';
+      } else if (pct >= 70) {
+        trophyEl.textContent = '🏆';
+        titleEl.textContent = '¡Très bon travail! ¡Muy buen trabajo!';
+        subEl.textContent = 'Estás muy bien preparado, repasa los detalles abajo.';
+      } else {
+        trophyEl.textContent = '💪';
+        titleEl.textContent = '¡Buen entrenamiento! Sigamos practicando';
+        subEl.textContent = 'Usa el botón "Repasar solo mis errores" para dominarlos todos.';
+      }
+
+      const btnMistakes = document.getElementById('btnRetryMistakes');
+      btnMistakes.style.display = currentMistakes.length > 0 ? 'inline-flex' : 'none';
+      btnMistakes.textContent = `🎯 Repasar mis errores (${currentMistakes.length})`;
+
+      const reviewList = document.getElementById('resReviewList');
+      reviewList.innerHTML = currentQuizQuestions.map((q, idx) => {
+        const mistake = currentMistakes.find(m => m.question === q);
+        const ok = !mistake;
+        return `
+          <div class="review-item ${ok ? 'ok' : 'bad'}">
+            <div style="font-weight:800; margin-bottom:4px;">
+              ${ok ? '✅' : '❌'} Pregunta ${idx + 1}: ${q.prompt}
+            </div>
+            <div style="font-size:0.86rem; color:var(--text-muted);">
+              ${q.explanation}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function retryMistakesOnly() {
+      if (currentMistakes.length === 0) return;
+      const retryQs = currentMistakes.map(m => m.question);
+      startQuizRound(retryQs);
+    }
+
+    /* =========================================================================
+       8. GUÍA DE ESTUDIO INTERACTIVA Y FLASHCARDS ("CHULETAS")
+       ========================================================================= */
+    function renderStudySidebar() {
+      const sb = document.getElementById('studySidebar');
+      sb.innerHTML = TOPICS_META.map(t => `
+        <button class="study-topic-btn ${t.id === activeStudyTopic ? 'active' : ''}"
+                onclick="selectStudyTopic('${t.id}')">
+          <span>${t.icon}</span>
+          <div style="flex:1; line-height:1.25;">
+            <div style="font-size:0.7rem; opacity:0.8;">${t.badge}</div>
+            <div>${t.title}</div>
+          </div>
+        </button>
+      `).join('');
+    }
+
+    function selectStudyTopic(topicId) {
+      activeStudyTopic = topicId;
+      renderStudySidebar();
+      renderStudyTopicContent(topicId);
+    }
+
+    function getGrammarCheatSheetHTML(topicId) {
+      if (topicId === 's1_presentacion') {
+        return `
+          <div class="rule-callout">
+            <h4>👋 Cómo presentarse a sí mismo y presentar a otra persona</h4>
+            <p>En la evaluación te pedirán presentarte (1ra persona: <strong>Je</strong>) y presentar a un compañero o tercera persona (<strong>Il</strong> para chico / <strong>Elle</strong> para chica):</p>
+            <div class="verb-tables-wrap" style="margin-top:10px;">
+              <div class="verb-table-card">
+                <div class="verb-table-header">🙋‍♂️ Presentarme a mí mismo (Moi)</div>
+                <div class="verb-row"><span class="verb-fr">Je m'appelle...</span><span class="verb-es">Me llamo...</span></div>
+                <div class="verb-row"><span class="verb-fr">J'ai 11 ans</span><span class="verb-es">Tengo 11 años (verbo avoir)</span></div>
+                <div class="verb-row"><span class="verb-fr">J'habite à...</span><span class="verb-es">Vivo en...</span></div>
+                <div class="verb-row"><span class="verb-fr">Je suis colombien(ne)</span><span class="verb-es">Soy colombiano(a)</span></div>
+                <div class="verb-row"><span class="verb-fr">J'aime le sport</span><span class="verb-es">Me gusta el deporte</span></div>
+              </div>
+              <div class="verb-table-card">
+                <div class="verb-table-header" style="background:#7c3aed;">👉 Presentar a otro (Il / Elle)</div>
+                <div class="verb-row"><span class="verb-fr">Il / Elle s'appelle...</span><span class="verb-es">Él / Ella se llama...</span></div>
+                <div class="verb-row"><span class="verb-fr">Il / Elle a 11 ans</span><span class="verb-es">Él / Ella tiene 11 años</span></div>
+                <div class="verb-row"><span class="verb-fr">Il / Elle habite à...</span><span class="verb-es">Él / Ella vive en...</span></div>
+                <div class="verb-row"><span class="verb-fr">Il est étudiant / Elle est étudiante</span><span class="verb-es">Es estudiante</span></div>
+                <div class="verb-row"><span class="verb-fr">Il / Elle aime la musique</span><span class="verb-es">Le gusta la música</span></div>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+      if (topicId === 's1_verbos') {
+        return `
+          <div class="rule-callout">
+            <h4>⚡ Tablas Clave: ÊTRE (ser/estar), AVOIR (tener) y Gustos (AIMER / ADORER / DÉTESTER)</h4>
+            <p>Aimer, adorer y détester son verbos regulares terminados en <strong>-ER</strong> (terminaciones: <em>-e, -es, -e, -ons, -ez, -ent</em>).</p>
+            <div class="verb-tables-wrap" style="margin-top:10px;">
+              <div class="verb-table-card">
+                <div class="verb-table-header">ÊTRE (Ser o Estar)</div>
+                <div class="verb-row"><span class="verb-fr">Je suis</span><span class="verb-es">Yo soy / estoy</span></div>
+                <div class="verb-row"><span class="verb-fr">Tu es</span><span class="verb-es">Tú eres / estás</span></div>
+                <div class="verb-row"><span class="verb-fr">Il / Elle est</span><span class="verb-es">Él / Ella es</span></div>
+                <div class="verb-row"><span class="verb-fr">Nous sommes</span><span class="verb-es">Nosotros somos</span></div>
+                <div class="verb-row"><span class="verb-fr">Vous êtes</span><span class="verb-es">Ustedes son</span></div>
+                <div class="verb-row"><span class="verb-fr">Ils / Elles sont</span><span class="verb-es">Ellos son</span></div>
+              </div>
+              <div class="verb-table-card">
+                <div class="verb-table-header" style="background:#059669;">AVOIR (Tener)</div>
+                <div class="verb-row"><span class="verb-fr">J'ai</span><span class="verb-es">Yo tengo</span></div>
+                <div class="verb-row"><span class="verb-fr">Tu as</span><span class="verb-es">Tú tienes</span></div>
+                <div class="verb-row"><span class="verb-fr">Il / Elle a</span><span class="verb-es">Él / Ella tiene</span></div>
+                <div class="verb-row"><span class="verb-fr">Nous avons</span><span class="verb-es">Nosotros tenemos</span></div>
+                <div class="verb-row"><span class="verb-fr">Vous avez</span><span class="verb-es">Ustedes tienen</span></div>
+                <div class="verb-row"><span class="verb-fr">Ils / Elles ont</span><span class="verb-es">Ellos tienen</span></div>
+              </div>
+              <div class="verb-table-card">
+                <div class="verb-table-header" style="background:#e11d48;">AIMER / ADORER / DÉTESTER</div>
+                <div class="verb-row"><span class="verb-fr">J'aime / Je déteste</span><span class="verb-es">-e</span></div>
+                <div class="verb-row"><span class="verb-fr">Tu aimes / détestes</span><span class="verb-es">-es</span></div>
+                <div class="verb-row"><span class="verb-fr">Il aime / déteste</span><span class="verb-es">-e</span></div>
+                <div class="verb-row"><span class="verb-fr">Nous aimons</span><span class="verb-es">-ons</span></div>
+                <div class="verb-row"><span class="verb-fr">Vous aimez</span><span class="verb-es">-ez</span></div>
+                <div class="verb-row"><span class="verb-fr">Ils aiment</span><span class="verb-es">-ent (muda)</span></div>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+      if (topicId === 's1_negacion_aimer' || topicId === 's2_negacion_general') {
+        return `
+          <div class="rule-callout">
+            <h4>🥪 El Truco del "Sándwich" para la Negación en Francés</h4>
+            <p>En francés, para negar ponemos el verbo conjugado en el centro de un sándwich entre <strong>NE</strong> y <strong>PAS</strong>:</p>
+            <p style="margin-top:8px; font-weight:800; font-size:1.02rem; color:var(--fr-blue-dark);">
+              Sujeto + <span style="color:#ef4444;">NE (o N')</span> + VERBO + <span style="color:#ef4444;">PAS</span>
+            </p>
+            <ul style="margin-top:8px; padding-left:20px;">
+              <li>Si el verbo empieza por <strong>vocal (a, e, i, o, u) o h muda</strong>, <code>ne</code> pierde la "e" y se vuelve <strong>n'</strong>: <em>Je <strong>n'</strong>aime <strong>pas</strong></em>, <em>Il <strong>n'</strong>est <strong>pas</strong></em>, <em>Nous <strong>n'</strong>allons <strong>pas</strong></em>.</li>
+              <li>Si el verbo empieza por <strong>consonante</strong>, se deja <strong>ne</strong> completo: <em>Je <strong>ne</strong> suis <strong>pas</strong></em>, <em>Il <strong>ne</strong> fait <strong>pas</strong></em>, <em>Tu <strong>ne</strong> vas <strong>pas</strong></em>.</li>
+            </ul>
+          </div>
+        `;
+      }
+      if (topicId === 's2_verbos_faire_aller') {
+        return `
+          <div class="rule-callout">
+            <h4>🚀 Verbos FAIRE (Hacer) y ALLER (Ir) + Preposiciones de Lugar</h4>
+            <div class="verb-tables-wrap" style="margin-top:10px;">
+              <div class="verb-table-card">
+                <div class="verb-table-header">🛠️ FAIRE (Hacer)</div>
+                <div class="verb-row"><span class="verb-fr">Je fais</span><span class="verb-es">Yo hago</span></div>
+                <div class="verb-row"><span class="verb-fr">Tu fais</span><span class="verb-es">Tú haces</span></div>
+                <div class="verb-row"><span class="verb-fr">Il / Elle fait</span><span class="verb-es">Él / Ella hace</span></div>
+                <div class="verb-row"><span class="verb-fr">Nous faisons</span><span class="verb-es">Nosotros hacemos</span></div>
+                <div class="verb-row"><span class="verb-fr">Vous faites ⚠️</span><span class="verb-es">Ustedes hacen</span></div>
+                <div class="verb-row"><span class="verb-fr">Ils / Elles font ⚠️</span><span class="verb-es">Ellos hacen</span></div>
+              </div>
+              <div class="verb-table-card">
+                <div class="verb-table-header" style="background:#7c3aed;">🚶 ALLER (Ir)</div>
+                <div class="verb-row"><span class="verb-fr">Je vais</span><span class="verb-es">Yo voy</span></div>
+                <div class="verb-row"><span class="verb-fr">Tu vas</span><span class="verb-es">Tú vas</span></div>
+                <div class="verb-row"><span class="verb-fr">Il / Elle va</span><span class="verb-es">Él / Ella va</span></div>
+                <div class="verb-row"><span class="verb-fr">Nous allons</span><span class="verb-es">Nosotros vamos</span></div>
+                <div class="verb-row"><span class="verb-fr">Vous allez</span><span class="verb-es">Ustedes van</span></div>
+                <div class="verb-row"><span class="verb-fr">Ils / Elles vont ⚠️</span><span class="verb-es">Ellos van</span></div>
+              </div>
+            </div>
+            <p style="margin-top:8px;"><strong>Regla con lugares (Aller + lugar):</strong> Masculino = <strong>au</strong> (<em>au parc, au cinéma</em>) · Femenino = <strong>à la</strong> (<em>à la piscine, à la banque</em>) · Vocal/H = <strong>à l'</strong> (<em>à l'école, à l'hôpital</em>).</p>
+          </div>
+        `;
+      }
+      if (topicId === 's2_descripcion') {
+        return `
+          <div class="rule-callout">
+            <h4>🧑 Cómo hacer la Descripción Física (Uno mismo y otra persona)</h4>
+            <p>Usa <strong>ÊTRE</strong> para la estatura/aspecto general y <strong>AVOIR</strong> para los ojos (<em>les yeux</em>) y el cabello (<em>les cheveux</em>):</p>
+            <ul style="margin-top:6px; padding-left:20px;">
+              <li><strong>Con ÊTRE (Je suis / Il est / Elle est):</strong> <em>grand(e)</em> (alto/a), <em>petit(e)</em> (bajo/a), <em>mince</em> (delgado/a), <em>blond(e)</em> (rubio/a), <em>brun(e)</em> (moreno/a), <em>roux/rousse</em> (pelirrojo/a), <em>beau/belle</em> (guapo/bella).</li>
+              <li><strong>Con AVOIR (J'ai / Il a / Elle a):</strong> <em>les yeux bleus / verts / noirs / marron</em> · <em>les cheveux longs / courts / frisés / raides</em>.</li>
+            </ul>
+          </div>
+        `;
+      }
+      return '';
+    }
+
+    function renderStudyTopicContent(topicId) {
+      const meta = getTopicMeta(topicId);
+      const items = vocabDB[topicId] || [];
+      const area = document.getElementById('studyContentArea');
+
+      area.innerHTML = `
+        <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:10px; margin-bottom:14px;">
+          <div>
+            <span class="topic-badge ${meta.session === 's1' ? 'badge-s1' : 'badge-s2'}">${meta.badge}</span>
+            <h3 style="font-size:1.3rem; color:var(--fr-blue-dark); margin-top:4px;">${meta.icon} ${meta.title}</h3>
+          </div>
+          <button class="btn-primary" style="padding:10px 18px; font-size:0.9rem;" onclick="playSingleTopicNow('${topicId}')">
+            🎮 Practicar este tema ahora
+          </button>
+        </div>
+
+        ${getGrammarCheatSheetHTML(topicId)}
+
+        <div style="font-size:0.88rem; font-weight:700; color:var(--text-muted); margin-bottom:8px;">
+          🃏 Tarjetas de vocabulario (${items.length}): toca el altavoz 🔊 para escuchar la pronunciación en francés.
+        </div>
+
+        <div class="flashcards-grid">
+          ${items.map(item => `
+            <div class="flashcard" onclick="speakFrench('${item.fr.replace(/'/g, "\\'")}', event)">
+              <div class="fc-emoji">${item.emoji}</div>
+              <div class="fc-fr">${item.fr} 🔊</div>
+              <div class="fc-es">${item.es}</div>
+              ${item.note ? `<div class="fc-note">${item.note}</div>` : ''}
+            </div>
+          `).join('')}
+        </div>
+      `;
+    }
+
+    /* =========================================================================
+       9. EDITOR DEL CUADERNO (18 EXPRESIONES FAIRE Y VOCABULARIO)
+       ========================================================================= */
+    function renderCustomEditorList() {
+      const cat = document.getElementById('customCategorySelect').value;
+      const items = vocabDB[cat] || [];
+      const listEl = document.getElementById('customItemsList');
+
+      listEl.innerHTML = items.map((item, idx) => `
+        <div style="background:#fff; border:1px solid var(--border-color); border-radius:12px; padding:12px; display:flex; align-items:center; justify-content:space-between; gap:8px;">
+          <div style="display:flex; align-items:center; gap:10px;">
+            <span style="font-size:1.6rem;">${item.emoji}</span>
+            <div>
+              <div style="font-weight:800; color:var(--fr-blue-dark); font-size:0.95rem;">
+                #${idx + 1} · ${item.fr}
+                <button class="speak-btn" style="width:24px; height:24px; font-size:0.75rem;" onclick="speakFrench('${item.fr.replace(/'/g, "\\'")}', event)">🔊</button>
+              </div>
+              <div style="font-size:0.84rem; color:var(--text-muted);">${item.es}</div>
+            </div>
+          </div>
+          <button class="mini-btn" style="color:var(--fr-red); border-color:#fecaca;" onclick="deleteCustomVocabItem('${cat}', ${idx})">🗑️</button>
+        </div>
+      `).join('');
+    }
+
+    function addCustomVocabItem() {
+      const cat = document.getElementById('customCategorySelect').value;
+      const emoji = document.getElementById('newItemEmoji').value.trim() || '✨';
+      const fr = document.getElementById('newItemFr').value.trim();
+      const es = document.getElementById('newItemEs').value.trim();
+
+      if (!fr || !es) {
+        alert('Escribe tanto la expresión en francés como su significado en español.');
+        return;
+      }
+
+      if (!vocabDB[cat]) vocabDB[cat] = [];
+      vocabDB[cat].push({
+        emoji,
+        fr,
+        es,
+        note: 'Agregado del cuaderno de clase.'
+      });
+
+      saveVocabData();
+      document.getElementById('newItemFr').value = '';
+      document.getElementById('newItemEs').value = '';
+      renderCustomEditorList();
+    }
+
+    function deleteCustomVocabItem(cat, idx) {
+      if (!vocabDB[cat] || vocabDB[cat].length <= 3) {
+        alert('Cada categoría debe conservar al menos 3 elementos para generar los juegos.');
+        return;
+      }
+      vocabDB[cat].splice(idx, 1);
+      saveVocabData();
+      renderCustomEditorList();
+    }
+
+    function resetCustomToDefaults() {
+      if (confirm('¿Restaurar todo el vocabulario a la lista original por defecto?')) {
+        vocabDB = JSON.parse(JSON.stringify(DEFAULT_VOCAB_DB));
+        saveVocabData();
+        renderCustomEditorList();
+      }
+    }
+
+    // Inicializar al cargar
+    window.addEventListener('DOMContentLoaded', () => {
+      loadAppData();
+      renderTopicsGrid();
+    });
+  </script>
+</body>
+</html>
